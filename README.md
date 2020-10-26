@@ -9,9 +9,17 @@
 **Database Setup**
 - `$ createdb hireup_dev` & `$ createdb hireup_test`
 - `$ export DATABASE_URL=postgresql://localhost:5432/hireup_dev`
+- `$ python manage.py db migrate`
+- `$ python manage.py db upgrade`
 - `$ export DATABASE_URL=postgresql://localhost:5432/hireup_test`
-- _Include steps for 'migrating' db here._
+- `$ python manage.py db migrate`
+- `$ python manage.py db upgrade`
+
+_If you get errors concerning the `FLASK_APP` environment not being set, try `$ export FLASK_APP=manage.py`_
 
 ### CLI commands
 - `$ python manage.py routes` returns available routes
 - _Coming soon... database migrate/seeding commands._
+
+### Database Schema
+![image](https://user-images.githubusercontent.com/62635544/96819356-a6626380-13e0-11eb-8398-eef92ca100f3.png)
