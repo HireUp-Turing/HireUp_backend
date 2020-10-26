@@ -1,0 +1,7 @@
+pyenv
+__pycache__
+.idea
+coverage*
+.coverage
+.pytest_cache
+.DS_Store
