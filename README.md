@@ -28,5 +28,9 @@ _These instructions will be modified once an `.env` file is added to this repo._
 - `$ python manage.py routes` returns available routes
 - _Coming soon... database migrate/seeding commands._
 
+### Running tests
+_more details to come_
+- `python -m pytest -v`
+
 ### Database Schema
 ![image](https://user-images.githubusercontent.com/62635544/96819356-a6626380-13e0-11eb-8398-eef92ca100f3.png)
