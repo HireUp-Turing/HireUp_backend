@@ -36,12 +36,18 @@ class Applicant(db.Model):
 applicant_skills = db.Table('applicant_skills',
     db.Column('skill_id', db.Integer, db.ForeignKey('skill.id'), primary_key=True),
     db.Column('applicant_id', db.Integer, db.ForeignKey('applicant.id'), primary_key=True)
+
+    # not sure if this will work:
+    created_at = Column(DateTime(timezone=True), nullable=False, default=datetime.now())
 )
 
 # Join Table for Applicants and Values
 applicant_values = db.Table('applicant_values',
     db.Column('value_id', db.Integer, db.ForeignKey('value.id'), primary_key=True),
     db.Column('applicant_id', db.Integer, db.ForeignKey('applicant.id'), primary_key=True)
+
+    # not sure if this will work:
+    created_at = Column(DateTime(timezone=True), nullable=False, default=datetime.now())
 )
 
 
@@ -74,6 +80,9 @@ class Skill(db.Model):
     id = Column(Integer, primary_key=True)
     name = Column(String(80), nullable=False)
 
+    # not sure if this will work:
+    created_at = Column(DateTime(timezone=True), nullable=False, default=datetime.now())
+
     # Many to Many Relationship: nothing needed here.
 
 
@@ -82,5 +91,8 @@ class Value(db.Model):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(80), nullable=False)
+
+    # not sure if this will work:
+    created_at = Column(DateTime(timezone=True), nullable=False, default=datetime.now())
 
     # Many to Many Relationship: nothing needed here.
