@@ -8,6 +8,7 @@ class ReadStatusEnum(Enum):
     ignored = 'ignored'
     responded = 'responded'
 
+
 class Applicant(db.Model):
 
     # Is set automatically using class name in lowercase and
@@ -37,6 +38,13 @@ applicant_skills = db.Table('applicant_skills',
     db.Column('applicant_id', db.Integer, db.ForeignKey('applicant.id'), primary_key=True)
 )
 
+# Join Table for Applicants and Values
+applicant_values = db.Table('applicant_values',
+    db.Column('value_id', db.Integer, db.ForeignKey('value.id'), primary_key=True),
+    db.Column('applicant_id', db.Integer, db.ForeignKey('applicant.id'), primary_key=True)
+)
+
+
 class Message(db.Model):
     __tablename__ = 'messages'
 
@@ -59,8 +67,18 @@ class Message(db.Model):
     # One to Many Relationship:
     applicant_id = db.Column(db.Integer, db.ForeignKey('applicant_id'), nullable=False)
 
+
 class Skill(db.Model):
     __tablename__ = 'skills'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(80), nullable=False)
+
+    # Many to Many Relationship: nothing needed here.
+
+
+class Value(db.Model):
+    __tablename__ = 'values'
 
     id = Column(Integer, primary_key=True)
     name = Column(String(80), nullable=False)
