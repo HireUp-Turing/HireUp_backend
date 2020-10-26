@@ -5,7 +5,7 @@ from flask import Flask, jsonify
 # from werkzeug.exceptions import HTTPException
 from config import config
 
-from api.resources.users import UsersResource, UserResource
+from api.resources.applicants import ApplicantResource, ApplicantsResource
 
 
 db = SQLAlchemy()
