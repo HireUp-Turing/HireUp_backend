@@ -15,3 +15,6 @@
 ### CLI commands
 - `$ python manage.py routes` returns available routes
 - _Coming soon... database migrate/seeding commands._
+
+### Database Schema
+![image](https://user-images.githubusercontent.com/62635544/96819356-a6626380-13e0-11eb-8398-eef92ca100f3.png)
