@@ -18,15 +18,13 @@ manager.add_command('db', MigrateCommand)
 def routes():
     print(app.url_map)
 
-# Seeding of DB!
+# write more commands here to enable db migration & seeding
 @manager.command
 def db_seed():
     db.drop_all()
     db.create_all()
 
-    # Seeds
-    # Look up how to make a seeds file and then
-    # call it here.
+    # seed anything here we might need
     applicant = Applicant(email='gaby@hireup.com', first_name='Gaby', last_name='Mendez')
     db.session.add(applicant)
 
