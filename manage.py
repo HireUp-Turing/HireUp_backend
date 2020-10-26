@@ -4,7 +4,7 @@ from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 
 from api import create_app, db
-from api.database.models import Applicant
+from api.database.models import Applicant, Value
 
 app = create_app()
 migrate = Migrate(app, db)
@@ -25,10 +25,18 @@ def db_seed():
     db.create_all()
 
     # seed anything here we might need
-    applicant = Applicant(email='gaby@hireup.com', first_name='Gaby', last_name='Mendez')
-    db.session.add(applicant)
+    gaby = Applicant(email='gaby@hireup.com', first_name='Gaby', last_name='Mendez')
+    db.session.add(gaby)
+
+    ruthie = Applicant(email='ruthie@hireup.com', first_name='Ruthie', last_name='Rabinovitch')
+    db.session.add(ruthie)
+
+    creativity = Value(name='creativity')
+    db.session.add(creativity)
 
     db.session.commit()
+    # this is just a return value for confirmation.
+    # counts objects seeded
     print(f'obj count: {len(db.session.query(Applicant).all())}')
 
 if __name__ == "__main__":
