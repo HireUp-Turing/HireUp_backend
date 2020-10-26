@@ -1,12 +1,14 @@
 ## HireUp - Backend API in Flask
 
 ### Set Up Flask App
-- Use _Homebrew_ to set up a Python virtual environment (we used `pyenv`) to avoid using the default Python distribution on your machine, install `Python 3` as well as `pip`, a package manager, and set the latest version of both as the global default inside `pyenv`. These [instructions](https://opensource.com/article/19/5/python-3-default-mac#what-to-do) were helpful.
+- Install Python3 and Pip3 using `pyenv`, a version manager. These [instructions](https://opensource.com/article/19/5/python-3-default-mac#what-to-do) were helpful.
 - Clone repo: `git clone git@github.com:HireUp-Turing/HireUp_backend.git`
-- Set up virtual environment
-  - build a virtual environment to install your Python packages: `$ python3 -m venv ./venv`
-  - activate the virtual environment: `$ source venv/bin/activate`
-- install Python packages: `$ pip install -r requirements.txt`
+- Virtual Environment Setup:
+  - Build and activate a virtual environment to install your Python packages with `$ python3 -m venv ./venv`
+  - _If you have Python3 set as your global version inside `pyenv` you probably can run `python` instead of `python3` at the beginning of that command.
+  - Activate the virtual environment: `$ source venv/bin/activate`
+  - Run `$ deactivate` to deactivate virtual environment.
+- Install Python packages: `$ pip install -r requirements.txt`
 - `$ python run.py` to run server on `localhost:5000`
 
 **Database Setup**
