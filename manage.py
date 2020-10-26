@@ -16,5 +16,7 @@ manager = Manager(app)
 def routes():
     print(app.url_map)
 
+# write more commands here to enable db migration & seeding
+
 if __name__ == "__main__":
     manager.run()
