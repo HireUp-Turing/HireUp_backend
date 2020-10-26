@@ -22,6 +22,8 @@
 
 _If you get errors concerning the `FLASK_APP` environment not being set, try `$ export FLASK_APP=manage.py`_
 
+_These instructions will be modified once an `.env` file is added to this repo._
+
 ### CLI commands
 - `$ python manage.py routes` returns available routes
 - _Coming soon... database migrate/seeding commands._
