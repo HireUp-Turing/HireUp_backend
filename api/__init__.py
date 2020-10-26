@@ -5,7 +5,7 @@ from flask import Flask, jsonify
 # from werkzeug.exceptions import HTTPException
 from config import config
 
-from api.resources.applicants import ApplicantResource, ApplicantsResource
+# from api.resources.applicants import ApplicantResource, ApplicantsResource
 
 
 db = SQLAlchemy()
@@ -34,7 +34,7 @@ def create_app(config_name='default'):
         return 'Hello World!'
 
     # Add resources
-    api.add_resource(UserResource, '/api/v1/users/<user_id>')
-    api.add_resource(UsersResource, '/api/v1/users')
+    # api.add_resource(ApplicantResource, '/api/v1/applicant/<applicant_id>')
+    # api.add_resource(ApplicantsResource, '/api/v1/applicants')
 
     return app
