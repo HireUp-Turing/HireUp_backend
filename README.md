@@ -11,3 +11,7 @@
 - `$ export DATABASE_URL=postgresql://localhost:5432/hireup_dev`
 - `$ export DATABASE_URL=postgresql://localhost:5432/hireup_test`
 - _Include steps for 'migrating' db here._
+
+### CLI commands
+- `$ python manage.py routes` returns available routes
+- _Coming soon... database migrate/seeding commands._
