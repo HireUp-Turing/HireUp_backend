@@ -21,7 +21,7 @@ def routes():
 # write more commands here to enable db migration & seeding
 @manager.command
 def db_seed():
-    db_drop_everything(db)
+    db.drop_all()
     db.create_all()
 
     # seed anything here we might need
