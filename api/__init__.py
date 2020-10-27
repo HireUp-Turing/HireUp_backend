@@ -31,9 +31,9 @@ def create_app(config_name='default'):
         return 'Hello World!'
 
     # Add resources
-    from api.resources.applicants import ApplicantsResource
+    from api.resources.applicants import ApplicantsResource, ApplicantResource
 
-    # api.add_resource(ApplicantResource, '/api/v1/applicant/<applicant_id>')
+    api.add_resource(ApplicantResource, '/api/v1/applicants/<applicant_id>')
     api.add_resource(ApplicantsResource, '/api/v1/applicants')
 
     return app
