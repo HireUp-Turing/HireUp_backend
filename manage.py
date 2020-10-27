@@ -46,6 +46,12 @@ def db_seed():
     ruby = Skill(name='ruby')
     db.session.add(ruby)
 
+    message1 = Message(applicant_id=ruthie.id, employer_name='Turing', employer_email='info@turing.com', body='This is a message from Turing! You are awesome.')
+    db.session.add(message1)
+
+    message2 = Message(applicant_id=ruthie.id, employer_name='Basecamp', employer_email='info@basecamp.com', body='Come work for us.')
+    db.session.add(message2)
+
     ruthie.skills.append(rails)
     ruthie.skills.append(flask)
     ruthie.values.append(creativity)
