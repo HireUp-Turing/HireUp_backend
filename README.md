@@ -92,30 +92,28 @@ _more details to come_
 ​    "id": "1",
 ​    "username": "Chipmunk",
     "bio": "I'm the best one you could possibly hire",
-​    "updated_at": "Oct_20_etc_etc",
 ​    "skills": ["javascript", "react"],
 ​    "values": ["writing", "teamwork"]
   }, {
 ​    "id": "2",
 ​    "username": "time-traveler",
     "bio": "I'm the best one you could possibly hire",
-​    "updated_at": "Oct_20_etc_etc",
 ​    "skills": ["javascript", "react"],
 ​    "values": ["paired programming", "magic"]
   }]
 }
 ```
-#### GET `/api/v1/applicants/:id`
+#### GET `/api/v1/applicants/:applicant_id`
 (eventually this endpoint should require some sort of authentication and that the user is logged in)
 ##### Response
 ```
   data: {
     "id": $id,
+    "email": "google@google.com",
+    "username": "Chipmunk",
     "first_name": "Greyson",
     "last_name": "Johns",
     "bio": "I'm the best one you could possibly hire",
-    "email": "google@google.com",
-    "username": "Chipmunk",
 ​    "skills": ["javascript", "react"],
 ​    "values": ["writing", "teamwork"]
   }
@@ -141,7 +139,7 @@ data: {
   id: $id
 }
 ```
-### PATCH  `/api/v1/applicants/:id
+### PATCH  `/api/v1/applicants/:applicant_id
 (eventually this endpoint should require some sort of authentication and that the user is logged in)
 #### Request
 (contains at least one, if not all of the following properties)
