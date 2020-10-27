@@ -17,7 +17,19 @@ def _applicant_payload(applicant):
         'bio': applicant.bio,
         # 'skills': [{'id': skill.id, 'name': skill.name} for skill in applicant.skills],
         'skills': [skill.name for skill in applicant.skills],
-        'values': [value.name for value in applicant.values]
+        'values': [value.name for value in applicant.values],
+        'messages': [_message_payload(message) for message in applicant.messages]
+    }
+
+def _message_payload(message):
+
+    return {
+        'id': message.id,
+        'employer_name': message.employer_name,
+        'employer_email': message.employer_email,
+        'body': message.body,
+        'read_status': message.created_at,
+        'created_at' : message.created_at
     }
 
 class ApplicantsResource(Resource):
