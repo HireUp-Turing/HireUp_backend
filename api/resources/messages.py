@@ -27,7 +27,13 @@ class MessagesResource(Resource):
     """
 
     def get(self, *args, **kwargs):
-        messages = Message.query.all()
+        applicant_id = request.args.get('applicant_id')
+
+        if applicant_id:
+            messages = db.session.query(Message).filter_by(applicant_id=applicant_id).all()
+        else:
+            messages = Message.query.all()
+
         results = [_message_payload(message) for message in messages]
         return {
             'success': True,
@@ -40,10 +46,11 @@ class MessageResource(Resource):
     """
     def get(self, *args, **kwargs):
         # kwargs == params
-        id = kwargs['id']
+
+        message_id = kwargs['message_id']
         message = None
         try:
-            message = db.session.query(Message).filter_by(id=id).one()
+            message = db.session.query(Message).filter_by(id=message_id).one()
         except NoResultFound:
             return abort(404)
 
