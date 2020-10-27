@@ -21,17 +21,6 @@ def _applicant_payload(applicant):
         'messages': [_message_payload(message) for message in applicant.messages]
     }
 
-def _message_payload(message):
-
-    return {
-        'id': message.id,
-        'employer_name': message.employer_name,
-        'employer_email': message.employer_email,
-        'body': message.body,
-        'read_status': message.read_status,
-        'created_at' : message.created_at.__str__()
-    }
-
 class ApplicantsResource(Resource):
     """
     this Resource file is for our /applicants endpoints which don't require
