@@ -4,7 +4,7 @@ from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 
 from api import create_app, db
-from api.database.models import Applicant, Value
+from api.database.models import Applicant, Value, Skill
 
 app = create_app()
 migrate = Migrate(app, db)
@@ -33,6 +33,27 @@ def db_seed():
 
     creativity = Value(name='creativity')
     db.session.add(creativity)
+
+    mentorship = Value(name='mentorship')
+    db.session.add(mentorship)
+
+    rails = Skill(name='rails')
+    db.session.add(rails)
+
+    flask = Skill(name='flask')
+    db.session.add(flask)
+
+    ruby = Skill(name='ruby')
+    db.session.add(ruby)
+
+    ruthie.skills.append(rails)
+    ruthie.skills.append(flask)
+    ruthie.values.append(creativity)
+    ruthie.values.append(mentorship)
+
+    gaby.skills.append(rails)
+    gaby.skills.append(ruby)
+    gaby.values.append(creativity)
 
     db.session.commit()
     # this is just a return value for confirmation.

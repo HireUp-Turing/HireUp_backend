@@ -15,8 +15,9 @@ def _applicant_payload(applicant):
         'id': applicant.id,
         'username': '',
         'email': applicant.email,
-        'skills': 'list_of_skills',
-        'values': 'list_of_values'
+        # 'skills': [{'id': skill.id, 'name': skill.name} for skill in applicant.skills],
+        'skills': [skill.name for skill in applicant.skills],
+        'values': [value.name for value in applicant.values]
     }
 
 class ApplicantsResource(Resource):
