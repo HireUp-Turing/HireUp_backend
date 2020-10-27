@@ -28,8 +28,8 @@ def _message_payload(message):
         'employer_name': message.employer_name,
         'employer_email': message.employer_email,
         'body': message.body,
-        'read_status': message.created_at,
-        'created_at' : message.created_at
+        'read_status': message.read_status,
+        'created_at' : message.created_at.__str__()
     }
 
 class ApplicantsResource(Resource):
