@@ -8,7 +8,7 @@ addons:
 install:
   - pip install -r requirements.txt
 before_script:
-- psql --version
-- psql -c 'create database hireup_test;' -U postgres
+  - psql --version
+  - psql -c 'create database hireup_test;' -U postgres
 script:
   - python -m pytest -v
