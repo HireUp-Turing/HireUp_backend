@@ -25,10 +25,10 @@ def db_seed():
     db.create_all()
 
     # seed anything here we might need
-    gaby = Applicant(email='gaby@hireup.com', first_name='Gaby', last_name='Mendez')
+    gaby = Applicant(email='gaby@hireup.com', first_name='Gaby', last_name='Mendez', bio="Noodle's mom!")
     db.session.add(gaby)
 
-    ruthie = Applicant(email='ruthie@hireup.com', first_name='Ruthie', last_name='Rabinovitch')
+    ruthie = Applicant(email='ruthie@hireup.com', first_name='Ruthie', last_name='Rabinovitch', bio='Noodle\'s mom\'s accountabilabuddy!')
     db.session.add(ruthie)
 
     creativity = Value(name='creativity')
