@@ -18,7 +18,6 @@ def _applicant_payload(applicant):
         # 'skills': [{'id': skill.id, 'name': skill.name} for skill in applicant.skills],
         'skills': [skill.name for skill in applicant.skills],
         'values': [value.name for value in applicant.values],
-        'messages': [_message_payload(message) for message in applicant.messages]
     }
 
 class ApplicantsResource(Resource):
