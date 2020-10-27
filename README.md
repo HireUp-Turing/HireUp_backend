@@ -34,3 +34,161 @@ _more details to come_
 
 ### Database Schema
 ![image](https://user-images.githubusercontent.com/62635544/96819356-a6626380-13e0-11eb-8398-eef92ca100f3.png)
+
+### Endpoint Map
+
+### Applicants
+#### GET `/api/v1/applicants` 
+##### Response
+(all applicants)
+```
+{ 
+  data: [{
+​    "id": "1",
+​    "username": "Chipmunk",
+    "bio": "I'm the best one you could possibly hire",
+​    "skills": ["javascript", "react"],
+​    "values": ["writing", "teamwork"]
+  }, {
+​    "id": "2",
+​    "username": "BeBe",
+    "bio": "I'm the best one you could possibly hire",
+​    "skills": ["javascript", "react"],
+​    "values": ["paired programming", "magic"]
+  }, {
+​    "id": "3",
+​    "username": "Wingnut",
+    "bio": "I'm the best one you could possibly hire",
+​    "skills": ["react"],
+​    "values": ["paired programming", "teamwork"]
+  }]
+}
+```
+#### GET `/api/v1/applicants/search-options` or `/api/v1/applicants/attributes`
+##### Response
+(returns skills and values that are present in applicant profiles)
+```
+{
+  data: {
+    skills: ["javascript", "react"],
+    values: ["paired programming", "teamwork", "magic", "writing"]
+  }
+}
+```
+#### GET `/api/v1/applicants/search`
+##### Request Body
+(one of these arrays can be empty, but not both)
+```
+{
+  skills: ["javascript"]
+  values: ["magic"]
+}
+```
+##### Response
+(returns any user that contains any property)
+```
+{ 
+  data: [{
+​    "id": "1",
+​    "username": "Chipmunk",
+    "bio": "I'm the best one you could possibly hire",
+​    "updated_at": "Oct_20_etc_etc",
+​    "skills": ["javascript", "react"],
+​    "values": ["writing", "teamwork"]
+  }, {
+​    "id": "2",
+​    "username": "time-traveler",
+    "bio": "I'm the best one you could possibly hire",
+​    "updated_at": "Oct_20_etc_etc",
+​    "skills": ["javascript", "react"],
+​    "values": ["paired programming", "magic"]
+  }]
+}
+```
+#### GET `/api/v1/applicants/:id`
+(eventually this endpoint should require some sort of authentication and that the user is logged in)
+##### Response
+```
+  data: {
+    "id": $id,
+    "first_name": "Greyson",
+    "last_name": "Johns",
+    "bio": "I'm the best one you could possibly hire",
+    "email": "google@google.com",
+    "username": "Chipmunk",
+​    "skills": ["javascript", "react"],
+​    "values": ["writing", "teamwork"]
+  }
+```
+### POST `/api/v1/applicants/
+#### Request
+```
+data: {
+    "first_name": "Greyson",
+    "last_name": "Johns",
+    "bio": "I'm the best one you could possibly hire",
+    "email": "google@google.com",
+    "username": "Chipmunk",
+​    "skills": ["javascript", "react"],
+​    "values": ["writing", "teamwork"]
+  }
+
+```
+#### Response
+(returns the new users id)
+```
+data: {
+  id: $id
+}
+```
+### PATCH  `/api/v1/applicants/:id
+(eventually this endpoint should require some sort of authentication and that the user is logged in)
+#### Request
+(contains at least one, if not all of the following properties)
+```
+{
+  "first_name": "Now I'm John",
+  "last_name": "Smith",
+  "bio": "Call me that from now on",
+  "email": "jjj@comcast.com"
+  "username": "Tameen"
+  "skills": ["bird-watching", "singing operatic sonatas poorly"],
+  "values": ["silliness", "charisma"]
+}
+```
+#### Response
+### Messages
+#### GET `/api/v1/messages/:user_id/
+(eventually this endpoint should require some sort of authentication and that the user is logged in)
+##### Response
+(returns messages associated with the provided user id)
+```
+data: {
+  [{
+    "applicant_id": "1",
+    "message_id": "1",
+​    "employer_name": "google",
+​    "employer_email": "google@email.com",
+​    "body": "message goes here",
+​    "read_status": false,
+      "created_at": "Oct_21_etc_ect"
+​  }, {
+​    "applicant_id": "1",
+    "message_id": "2",
+​    "employer_name": "Aerion Inc",
+​    "employer_email": "aerioninc@email.com",
+​    "body": "message goes here",
+​    "read_status": true,
+      "created_at": "Oct_21_etc_ect"
+​  }]
+}
+```
+#### POST `/api/v1/messages
+##### Request
+(body includes the id of the recipient)
+```
+  {
+    id: id
+  }
+```
+
