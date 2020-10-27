@@ -92,9 +92,9 @@ _If you get errors concerning the `FLASK_APP` environment not being set, try `$ 
 ​    "values": ["writing", "teamwork"]
   }, {
 ​    "id": "2",
-​    "username": "Oct_20_etc_etc",
+​    "username": "time-traveler",
     "bio": "I'm the best one you could possibly hire",
-​    "updated_at": "timestamp",
+​    "updated_at": "Oct_20_etc_etc",
 ​    "skills": ["javascript", "react"],
 ​    "values": ["paired programming", "magic"]
   }]
