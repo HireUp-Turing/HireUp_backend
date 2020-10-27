@@ -55,6 +55,7 @@ class Applicant(db.Model):
     # The name of the column is the name you assign it to
     id = Column(Integer, primary_key=True)
     email = Column(String(100), unique=True, nullable=False)
+    username = Column(String(100), default='Anonymous Giraffe')
     bio = Column(String(100))
     first_name = Column(String(80))
     last_name = Column(String(80))
