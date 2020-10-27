@@ -39,21 +39,18 @@ _If you get errors concerning the `FLASK_APP` environment not being set, try `$ 
 ​    "id": "1",
 ​    "username": "Chipmunk",
     "bio": "I'm the best one you could possibly hire",
-​    "updated_at": "Oct_20_etc_etc",
 ​    "skills": ["javascript", "react"],
 ​    "values": ["writing", "teamwork"]
   }, {
 ​    "id": "2",
 ​    "username": "BeBe",
     "bio": "I'm the best one you could possibly hire",
-​    "updated_at": "Oct_20_etc_etc",
 ​    "skills": ["javascript", "react"],
 ​    "values": ["paired programming", "magic"]
   }, {
 ​    "id": "3",
 ​    "username": "Wingnut",
     "bio": "I'm the best one you could possibly hire",
-​    "updated_at": "Oct_20_etc_etc",
 ​    "skills": ["react"],
 ​    "values": ["paired programming", "teamwork"]
   }]
@@ -111,7 +108,6 @@ _If you get errors concerning the `FLASK_APP` environment not being set, try `$ 
     "bio": "I'm the best one you could possibly hire",
     "email": "google@google.com",
     "username": "Chipmunk",
-​    "updated_at": "Oct_20_etc_etc",
 ​    "skills": ["javascript", "react"],
 ​    "values": ["writing", "teamwork"]
   }
@@ -125,7 +121,6 @@ data: {
     "bio": "I'm the best one you could possibly hire",
     "email": "google@google.com",
     "username": "Chipmunk",
-​    "updated_at": "Oct_20_etc_etc",
 ​    "skills": ["javascript", "react"],
 ​    "values": ["writing", "teamwork"]
   }
@@ -167,14 +162,16 @@ data: {
 ​    "employer_name": "google",
 ​    "employer_email": "google@email.com",
 ​    "body": "message goes here",
-​    "read_status": false
+​    "read_status": false,
+      "created_at": "Oct_21_etc_ect"
 ​  }, {
 ​    "applicant_id": "1",
     "message_id": "2",
 ​    "employer_name": "Aerion Inc",
 ​    "employer_email": "aerioninc@email.com",
 ​    "body": "message goes here",
-​    "read_status": true
+​    "read_status": true,
+      "created_at": "Oct_21_etc_ect"
 ​  }]
 }
 ```
