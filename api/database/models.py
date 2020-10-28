@@ -56,7 +56,7 @@ class Applicant(db.Model):
     id = Column(Integer, primary_key=True)
     email = Column(String(100), unique=True, nullable=False)
     username = Column(String(100), default='Anonymous Giraffe')
-    bio = Column(String(100))
+    bio = Column(String(250))
     first_name = Column(String(80))
     last_name = Column(String(80))
 
