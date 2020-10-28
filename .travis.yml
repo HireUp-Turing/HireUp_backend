@@ -8,8 +8,8 @@ addons:
 install:
   - pip install -r requirements.txt
 before_script:
-- psql --version
-- psql -c 'create database hireup_test;' -U postgres
-- python manage.py db upgrade
+  - psql --version
+  - psql -c 'create database hireup_test;' -U postgres
+  - python manage.py db upgrade
 script:
   - python -m pytest -v

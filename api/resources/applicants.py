@@ -1,3 +1,4 @@
+  
 import datetime
 import json
 
@@ -17,7 +18,7 @@ def _applicant_payload(applicant):
         'bio': applicant.bio,
         # 'skills': [{'id': skill.id, 'name': skill.name} for skill in applicant.skills],
         'skills': [skill.name for skill in applicant.skills],
-        'values': [value.name for value in applicant.values]
+        'values': [value.name for value in applicant.values],
     }
 
 class ApplicantsResource(Resource):

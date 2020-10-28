@@ -38,11 +38,11 @@ _more details to come_
 ### Endpoint Map
 
 ### Applicants
-#### GET `/api/v1/applicants` 
+#### GET `/api/v1/applicants`
 ##### Response
 (all applicants)
 ```
-{ 
+{
   data: [{
 ​    "id": "1",
 ​    "username": "Chipmunk",
@@ -87,35 +87,33 @@ _more details to come_
 ##### Response
 (returns any user that contains any property)
 ```
-{ 
+{
   data: [{
 ​    "id": "1",
 ​    "username": "Chipmunk",
     "bio": "I'm the best one you could possibly hire",
-​    "updated_at": "Oct_20_etc_etc",
 ​    "skills": ["javascript", "react"],
 ​    "values": ["writing", "teamwork"]
   }, {
 ​    "id": "2",
 ​    "username": "time-traveler",
     "bio": "I'm the best one you could possibly hire",
-​    "updated_at": "Oct_20_etc_etc",
 ​    "skills": ["javascript", "react"],
 ​    "values": ["paired programming", "magic"]
   }]
 }
 ```
-#### GET `/api/v1/applicants/:id`
+#### GET `/api/v1/applicants/:applicant_id`
 (eventually this endpoint should require some sort of authentication and that the user is logged in)
 ##### Response
 ```
   data: {
     "id": $id,
+    "email": "google@google.com",
+    "username": "Chipmunk",
     "first_name": "Greyson",
     "last_name": "Johns",
     "bio": "I'm the best one you could possibly hire",
-    "email": "google@google.com",
-    "username": "Chipmunk",
 ​    "skills": ["javascript", "react"],
 ​    "values": ["writing", "teamwork"]
   }
@@ -141,7 +139,7 @@ data: {
   id: $id
 }
 ```
-### PATCH  `/api/v1/applicants/:id
+### PATCH  `/api/v1/applicants/:applicant_id
 (eventually this endpoint should require some sort of authentication and that the user is logged in)
 #### Request
 (contains at least one, if not all of the following properties)
@@ -158,28 +156,29 @@ data: {
 ```
 #### Response
 ### Messages
-#### GET `/api/v1/messages/:user_id/
+#### GET `/api/v1/messages?applicant_id=<applicant_id>
+* use query params to send applicant_id! *
 (eventually this endpoint should require some sort of authentication and that the user is logged in)
 ##### Response
 (returns messages associated with the provided user id)
 ```
 data: {
   [{
+    "id": "1",
     "applicant_id": "1",
-    "message_id": "1",
 ​    "employer_name": "google",
 ​    "employer_email": "google@email.com",
 ​    "body": "message goes here",
 ​    "read_status": false,
       "created_at": "Oct_21_etc_ect"
 ​  }, {
-​    "applicant_id": "1",
-    "message_id": "2",
+​    "id": "2",
+    "applicant_id": "1",
 ​    "employer_name": "Aerion Inc",
 ​    "employer_email": "aerioninc@email.com",
 ​    "body": "message goes here",
 ​    "read_status": true,
-      "created_at": "Oct_21_etc_ect"
+    "created_at": "Oct_21_etc_ect"
 ​  }]
 }
 ```
@@ -191,4 +190,3 @@ data: {
     id: id
   }
 ```
-

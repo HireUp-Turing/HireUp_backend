@@ -32,8 +32,11 @@ def create_app(config_name='default'):
 
     # Add resources
     from api.resources.applicants import ApplicantsResource, ApplicantResource
+    from api.resources.messages import MessagesResource, MessageResource
 
     api.add_resource(ApplicantResource, '/api/v1/applicants/<applicant_id>')
     api.add_resource(ApplicantsResource, '/api/v1/applicants')
+    api.add_resource(MessageResource, '/api/v1/messages/<message_id>')
+    api.add_resource(MessagesResource, '/api/v1/messages')
 
     return app
