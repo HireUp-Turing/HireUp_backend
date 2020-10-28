@@ -80,8 +80,8 @@ _more details to come_
 (one of these arrays can be empty, but not both)
 ```
 {
-  skills: ["javascript"]
-  values: ["magic"]
+  "skill_ids": [2, 4]
+  "value_ids": [3]
 }
 ```
 ##### Response
