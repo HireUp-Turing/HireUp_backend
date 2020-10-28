@@ -55,7 +55,9 @@ class Applicant(db.Model):
     # The name of the column is the name you assign it to
     id = Column(Integer, primary_key=True)
     email = Column(String(100), unique=True, nullable=False)
-    first_name = Column(db.String(80))
+    username = Column(String(100), default='Anonymous Giraffe')
+    bio = Column(String(100))
+    first_name = Column(String(80))
     last_name = Column(String(80))
 
     created_at = Column(DateTime(timezone=True), nullable=False, default=datetime.now())

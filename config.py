@@ -26,8 +26,8 @@ class TestingConfig(Config):
 class ProductionConfig(Config):
     DEBUG = False
     TESTING = False
-    # SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL_DEV')
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL_PROD')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL_DEV')
+    # SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL_PROD')
 
 config = {
     'development': DevelopmentConfig,

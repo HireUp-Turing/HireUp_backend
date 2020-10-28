@@ -1,4 +1,15 @@
 language: python
-
+python:
+  - '3.7.3'
+services:
+  - postgresql
+addons:
+  postgresql: '9.6'
+install:
+  - pip install -r requirements.txt
+before_script:
+- psql --version
+- psql -c 'create database hireup_test;' -U postgres
+- python manage.py db upgrade
 script:
   - python -m pytest -v
