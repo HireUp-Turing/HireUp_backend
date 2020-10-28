@@ -69,9 +69,9 @@ _more details to come_
 (returns skills and values that are present in applicant profiles)
 ```
 {
-  data: {
-    skills: ["javascript", "react"],
-    values: ["paired programming", "teamwork", "magic", "writing"]
+  "data": {
+    "skills": [{"id": "1", "attribute":"Java"}, {"id": "2", "attribute": "Magic"}],
+    "values": [{"id": "1", "attribute":"heartfelt talks"}, {"id": "3", "attribute": "bring your turtle to work day"}]
   }
 }
 ```
