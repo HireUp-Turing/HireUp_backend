@@ -67,13 +67,38 @@ _more details to come_
 ```
 #### GET `/api/v1/applicants/search-options` or `/api/v1/applicants/attributes`
 ##### Response
-(returns skills and values that are present in applicant profiles)
+(returns alphabetically ordered skills and values that are present in applicant profiles)
 ```
 {
-  data: {
-    skills: ["javascript", "react"],
-    values: ["paired programming", "teamwork", "magic", "writing"]
-  }
+    "success": true,
+    "data": [
+        {
+            "skills": [
+                {
+                    "id": 2,
+                    "attribute": "flask"
+                },
+                {
+                    "id": 1,
+                    "attribute": "rails"
+                },
+                {
+                    "id": 3,
+                    "attribute": "ruby"
+                }
+            ],
+            "values": [
+                {
+                    "id": 1,
+                    "attribute": "creativity"
+                },
+                {
+                    "id": 2,
+                    "attribute": "mentorship"
+                }
+            ]
+        }
+    ]
 }
 ```
 #### GET `/api/v1/applicants/search`
@@ -81,8 +106,8 @@ _more details to come_
 (one of these arrays can be empty, but not both)
 ```
 {
-  skills: ["javascript"]
-  values: ["magic"]
+  "skill_ids": [2, 4]
+  "value_ids": [3]
 }
 ```
 ##### Response
