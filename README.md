@@ -66,13 +66,38 @@ _more details to come_
 ```
 #### GET `/api/v1/applicants/search-options` or `/api/v1/applicants/attributes`
 ##### Response
-(returns skills and values that are present in applicant profiles)
+(returns alphabetically ordered skills and values that are present in applicant profiles)
 ```
 {
-  "data": {
-    "skills": [{"id": "1", "attribute":"Java"}, {"id": "2", "attribute": "Magic"}],
-    "values": [{"id": "1", "attribute":"heartfelt talks"}, {"id": "3", "attribute": "bring your turtle to work day"}]
-  }
+    "success": true,
+    "data": [
+        {
+            "skills": [
+                {
+                    "id": 2,
+                    "attribute": "flask"
+                },
+                {
+                    "id": 1,
+                    "attribute": "rails"
+                },
+                {
+                    "id": 3,
+                    "attribute": "ruby"
+                }
+            ],
+            "values": [
+                {
+                    "id": 1,
+                    "attribute": "creativity"
+                },
+                {
+                    "id": 2,
+                    "attribute": "mentorship"
+                }
+            ]
+        }
+    ]
 }
 ```
 #### GET `/api/v1/applicants/search`
