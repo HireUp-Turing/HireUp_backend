@@ -22,8 +22,9 @@ def _applicant_payload(applicant):
     }
 
 def _validate_field(data, field, proceed, errors, missing_okay=False):
+    # can't create a user if there is no unique email
+    # or if email field is empty
     if field in data:
-
         if len(data[field]) == 0:
             proceed = False
             errors.append(f"required '{field}' parameter is blank")
@@ -50,7 +51,7 @@ class ApplicantsResource(Resource):
 
     def post(self, *args, **kwargs):
         applicant, errors = self._create_applicant(json.loads(request.data))
-        
+
         if applicant is not None:
             applicant_payload = _applicant_payload(applicant)
             applicant_payload['success'] = True
