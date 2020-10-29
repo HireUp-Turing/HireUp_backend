@@ -7,7 +7,7 @@ from flask_restful import Resource, abort
 from sqlalchemy.orm.exc import NoResultFound
 
 from api import db
-from api.database.models import Applicant
+from api.database.models import Applicant, ApplicantSkill
 
 def _applicant_payload(applicant):
 
@@ -34,6 +34,11 @@ def _validate_field(data, field, proceed, errors, missing_okay=False):
         data[field] = ''
 
     return proceed, data[field], errors
+
+def _add_skill(skill_id, applicant_id):
+    app_skill = ApplicantSkill(skill_id=skill_id, applicant_id=applicant_id)
+    db.session.add(app_skill)
+    db.session.commit()
 
 class ApplicantsResource(Resource):
     """
@@ -64,6 +69,7 @@ class ApplicantsResource(Resource):
             }, 400
 
     def _create_applicant(self, data):
+        # helper method to create applicant and add to DB
 
         proceed = True
         errors = []
@@ -81,9 +87,16 @@ class ApplicantsResource(Resource):
             )
             db.session.add(applicant)
             db.session.commit()
+
+            # new_app =
+            # db.session.query(Applicant).order_by(Applicant.id.desc()).first()
+
+            [_add_skill(skill_id, applicant.id) for skill_id in data['skills']]
+
             return applicant, errors
         else:
             return None, errors
+
 
 
 class ApplicantResource(Resource):
