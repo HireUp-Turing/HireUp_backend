@@ -106,8 +106,8 @@ _more details to come_
 (one of these arrays can be empty, but not both)
 ```
 {
-  "skill_ids": [2, 4]
-  "value_ids": [3]
+  "skills": [2, 4]
+  "values": [3]
 }
 ```
 ##### Response
