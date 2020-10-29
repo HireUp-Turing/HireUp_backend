@@ -16,7 +16,7 @@ script:
 deploy:
   provider: heroku
   api_key:
-    secure:
+    secure: DUm1y146Za/3E+BvESd768rXSpqSkckH8lvx2VzJBJodJdepGLRC1teFsjAhtuUyw2cu86hxlbNGlYhG5pgTTa9OAKDTtj3RRyW2KRp0F8C9rf0c11mT78podrQx4MwthLFUMaicU9bymKvL4Kk/9tcuQZFhuN8nU/c7XMZJbp8ojebWApjyed/gbdnxNSLOKm9JiMbe6ebJ24KohrtKBDBsEEwWAByGMO1q8N2i3pT1YjH/ram87am2WciWG53/RnUVjHl4yLdJz5IftzQejz8LPuQxf4V60OK3HRz+XYyxqPoxrBmj4kmIRF2mObFK5q4S/pwyXtICgFrVh6oa/baP+gYveVZbTBSc5D2KUipseIONCidzU2wlPXiDPNjR2UdyZbwvDslYenFup1NsCnBI8gE/Rw0fVhu547SmxsIsU9T6x7FRfC6J2zDP3LGaFJ2MfJwyhFkyqwXlnyoS6GzHy1C7lsuEqtW/HHvreGz/9Q0h2g4rr1bB9+THvnqqE9bl2gz3e7RqRAxd9vIsWxIvfb9DJoCsaqRGNvSflobF+eMoQkBr1g8Q2NtJESaaI25w4Ox3uHPgFXA1GBEZdEJgDFLYWtcm6TsQet4veV0e1cK/m+E9FrbQHT2bwB+THw2NKuWCZdZ/bzOwALmoG9fbJa34N/y2qGJG/pq/wvw=
   app: hireup-be
   on:
     repo: HireUp-Turing/HireUp_backend
