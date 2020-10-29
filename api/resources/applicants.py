@@ -84,6 +84,12 @@ class ApplicantsResource(Resource):
         proceed, email, errors = _validate_field(
             data, 'email', proceed, errors)
 
+        # skills and values arrays cannot be blank
+        proceed, skills, errors = _validate_field(
+            data, 'skills', proceed, errors)
+        proceed, values, errors = _validate_field(
+            data, 'values', proceed, errors)
+
         if proceed:
             applicant = Applicant(
                 email=email,
@@ -101,8 +107,6 @@ class ApplicantsResource(Resource):
             return applicant, errors
         else:
             return None, errors
-
-
 
 class ApplicantResource(Resource):
     """
