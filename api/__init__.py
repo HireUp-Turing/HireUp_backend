@@ -41,6 +41,6 @@ def create_app(config_name='default'):
     api.add_resource(MessageResource, '/api/v1/messages/<message_id>')
     api.add_resource(MessagesResource, '/api/v1/messages')
     api.add_resource(SearchOptionsResource, '/api/v1/search-options')
-    api.add_resource(SearchResultsResource, '/api/v1/search')
+    api.add_resource(SearchResultsResource, '/api/v1/applicants/search')
 
     return app
