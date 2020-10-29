@@ -1,6 +1,7 @@
 ## HireUp - Backend API in Flask
 
 ### Set Up Flask App
+
 - Install Python3 and Pip3 using `pyenv`, a version manager. These [instructions](https://opensource.com/article/19/5/python-3-default-mac#what-to-do) were helpful.
 - Clone repo: `git clone git@github.com:HireUp-Turing/HireUp_backend.git`
 - Virtual Environment Setup:
@@ -66,13 +67,38 @@ _more details to come_
 ```
 #### GET `/api/v1/applicants/search-options` or `/api/v1/applicants/attributes`
 ##### Response
-(returns skills and values that are present in applicant profiles)
+(returns alphabetically ordered skills and values that are present in applicant profiles)
 ```
 {
-  data: {
-    skills: ["javascript", "react"],
-    values: ["paired programming", "teamwork", "magic", "writing"]
-  }
+    "success": true,
+    "data": [
+        {
+            "skills": [
+                {
+                    "id": 2,
+                    "attribute": "flask"
+                },
+                {
+                    "id": 1,
+                    "attribute": "rails"
+                },
+                {
+                    "id": 3,
+                    "attribute": "ruby"
+                }
+            ],
+            "values": [
+                {
+                    "id": 1,
+                    "attribute": "creativity"
+                },
+                {
+                    "id": 2,
+                    "attribute": "mentorship"
+                }
+            ]
+        }
+    ]
 }
 ```
 #### GET `/api/v1/applicants/search`
@@ -80,8 +106,8 @@ _more details to come_
 (one of these arrays can be empty, but not both)
 ```
 {
-  skills: ["javascript"]
-  values: ["magic"]
+  "skill_ids": [2, 4]
+  "value_ids": [3]
 }
 ```
 ##### Response
