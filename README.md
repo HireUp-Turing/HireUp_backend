@@ -1,6 +1,7 @@
 ## HireUp - Backend API in Flask
 
 ### Set Up Flask App
+
 - Install Python3 and Pip3 using `pyenv`, a version manager. These [instructions](https://opensource.com/article/19/5/python-3-default-mac#what-to-do) were helpful.
 - Clone repo: `git clone git@github.com:HireUp-Turing/HireUp_backend.git`
 - Virtual Environment Setup:
