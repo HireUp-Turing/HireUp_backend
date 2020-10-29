@@ -21,6 +21,19 @@ def _applicant_payload(applicant):
         'values': [value.name for value in applicant.values],
     }
 
+def _validate_field(data, field, proceed, errors, missing_okay=False):
+    if field in data:
+
+        if len(data[field]) == 0:
+            proceed = False
+            errors.append(f"required '{field}' parameter is blank")
+    if not missing_okay and field not in data:
+        proceed = False
+        errors.append(f"required '{field}' parameter is missing")
+        data[field] = ''
+
+    return proceed, data[field], errors
+
 class ApplicantsResource(Resource):
     """
     this Resource file is for our /applicants endpoints which don't require
@@ -34,6 +47,43 @@ class ApplicantsResource(Resource):
             'success': True,
             'data': results
         }, 200
+
+    def post(self, *args, **kwargs):
+        applicant, errors = self._create_applicant(json.loads(request.data))
+        
+        if applicant is not None:
+            applicant_payload = _applicant_payload(applicant)
+            applicant_payload['success'] = True
+            return applicant_payload, 201
+        else:
+            return {
+                'success': False,
+                'error': 400,
+                'errors': errors
+            }, 400
+
+    def _create_applicant(self, data):
+
+        proceed = True
+        errors = []
+
+        proceed, email, errors = _validate_field(
+            data, 'email', proceed, errors)
+
+        if proceed:
+            applicant = Applicant(
+                email=email,
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                bio=data['bio'],
+                username=data['username']
+            )
+            db.session.add(applicant)
+            db.session.commit()
+            return applicant, errors
+        else:
+            return None, errors
+
 
 class ApplicantResource(Resource):
     """
