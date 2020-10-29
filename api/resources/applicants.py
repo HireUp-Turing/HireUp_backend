@@ -7,8 +7,9 @@ from flask_restful import Resource, abort
 from sqlalchemy.orm.exc import NoResultFound
 
 from api import db
-from api.database.models import Applicant, ApplicantSkill
+from api.database.models import Applicant, ApplicantSkill, ApplicantValue
 
+# HELPER METHODS
 def _applicant_payload(applicant):
 
     return {
@@ -35,9 +36,13 @@ def _validate_field(data, field, proceed, errors, missing_okay=False):
 
     return proceed, data[field], errors
 
-def _add_skill(skill_id, applicant_id):
-    app_skill = ApplicantSkill(skill_id=skill_id, applicant_id=applicant_id)
-    db.session.add(app_skill)
+def _add_attribute(model, attribute_id, applicant_id):
+    if model == ApplicantSkill:
+        attribute = ApplicantSkill(skill_id=attribute_id, applicant_id=applicant_id)
+    elif model == ApplicantValue:
+        attribute = ApplicantValue(value_id=attribute_id, applicant_id=applicant_id)
+
+    db.session.add(attribute)
     db.session.commit()
 
 class ApplicantsResource(Resource):
@@ -70,7 +75,6 @@ class ApplicantsResource(Resource):
 
     def _create_applicant(self, data):
         # helper method to create applicant and add to DB
-
         proceed = True
         errors = []
 
@@ -88,10 +92,8 @@ class ApplicantsResource(Resource):
             db.session.add(applicant)
             db.session.commit()
 
-            # new_app =
-            # db.session.query(Applicant).order_by(Applicant.id.desc()).first()
-
-            [_add_skill(skill_id, applicant.id) for skill_id in data['skills']]
+            [_add_attribute(ApplicantSkill, skill_id, applicant.id) for skill_id in data['skills']]
+            [_add_attribute(ApplicantValue, value_id, applicant.id) for value_id in data['values']]
 
             return applicant, errors
         else:
