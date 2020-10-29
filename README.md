@@ -146,18 +146,29 @@ Returns any user that contains any of the attributes selected in the search
 
 #### POST `/api/v1/applicants/`
 #### Request
-_This needs to be updated, as skills/values will probably need to come in as an array of id's, same as with the search function_
+Email, skills, and values are **required fields**
+
 ```
-data: {
+{
     "first_name": "Greyson",
     "last_name": "Johns",
     "bio": "I'm the best one you could possibly hire",
     "email": "google@google.com",
     "username": "Chipmunk",
-​    "skills": ["javascript", "react"],
-​    "values": ["writing", "teamwork"]
+​    "skills": [1, 2],
+​    "values": [2]
   }
 
+```
+_New applicant cannot come in with empty arrays for either skills or values when being created, else response is 400 error message:_
+```
+{
+    "success": false,
+    "error": 400,
+    "errors": [
+        "required 'values' parameter is blank"
+    ]
+}
 ```
 #### Response
 Returns the new users id
@@ -171,7 +182,7 @@ data: {
 _This needs to be updated, as skills/values will probably need to come in as an array of id's, same as with the search function_
 
 ```
-data: {
+{
   "first_name": "Now I'm John",
   "last_name": "Smith",
   "bio": "Call me that from now on",
