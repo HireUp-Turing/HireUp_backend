@@ -34,6 +34,19 @@ def _validate_field(data, field, proceed, errors, missing_okay=False):
 
     return proceed, data[field], errors
 
+def _validate_id_field(data, field, proceed, errors, missing_okay=False):
+    # validation for integer field (like id)
+    if field in data:
+        if type(data[field]) != int:
+            proceed = False
+            errors.append(f"required '{field}' must be an integer")
+    if not missing_okay and field not in data:
+        proceed = False
+        errors.append(f"required '{field}' parameter is missing")
+        data[field] = ''
+
+    return proceed, data[field], errors
+
 class MessagesResource(Resource):
     """
     this Resource file is for our /messages endpoints
@@ -54,48 +67,48 @@ class MessagesResource(Resource):
             'data': results
         }, 200
 
-        def post(self, *args, **kwargs):
-            message, errors = self._create_message(json.loads(request.data))
+    def post(self, *args, **kwargs):
+        message, errors = self._create_message(json.loads(request.data))
 
-            if message is not None:
-                message_payload = _message_payload(message)
-                message_payload['success'] = True
-                return {
-                    'success': True,
-                    'data': message_payload
-                }, 201
-            else:
-                return {
-                    'success': False,
-                    'error': 400,
-                    'errors': errors
-                }, 400
+        if message is not None:
+            message_payload = _message_payload(message)
+            message_payload['success'] = True
+            return {
+                'success': True,
+                'data': message_payload
+            }, 201
+        else:
+            return {
+                'success': False,
+                'error': 400,
+                'errors': errors
+            }, 400
 
-        def _create_message(self, data):
-            proceed = True
-            errors = []
+    def _create_message(self, data):
+        proceed = True
+        errors = []
 
-            # employer info can't be blank
-            proceed, employer_name, errors = _validate_field(
-                data, 'employer_name', proceed, errors)
-            proceed, employer_email, errors = _validate_field(
-                data, 'employer_email', proceed, errors)
-            proceed, applicant_id, errors = _validate_field(
-                data, 'applicant_id', proceed, errors)
+        # employer info can't be blank
+        proceed, employer_name, errors = _validate_field(
+            data, 'employer_name', proceed, errors)
+        proceed, employer_email, errors = _validate_field(
+            data, 'employer_email', proceed, errors)
+        proceed, applicant_id, errors = _validate_id_field(
+            data, 'applicant_id', proceed, errors)
 
-            if proceed:
-                message = Message(
-                    applicant_id=applicant_id,
-                    employer_name=employer_name,
-                    employer_email=employer_email,
-                    body=data['body']
-                )
-                db.session.add(message)
-                db.session.commit()
+        if proceed:
+            message = Message(
+                applicant_id=applicant_id,
+                employer_name=employer_name,
+                employer_email=employer_email,
+                body=data['body']
+            )
+            db.session.add(message)
+            db.session.commit()
 
-                return message, errors
-            else:
-                return None, errors
+            return message, errors
+        else:
+            return None, errors
 
 class MessageResource(Resource):
     """ single message Show:
