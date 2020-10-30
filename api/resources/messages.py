@@ -33,7 +33,7 @@ def _validate_field(data, field, proceed, errors, missing_okay=False):
         data[field] = ''
 
     return proceed, data[field], errors
-    
+
 class MessagesResource(Resource):
     """
     this Resource file is for our /messages endpoints
@@ -80,9 +80,12 @@ class MessagesResource(Resource):
                 data, 'employer_name', proceed, errors)
             proceed, employer_email, errors = _validate_field(
                 data, 'employer_email', proceed, errors)
+            proceed, applicant_id, errors = _validate_field(
+                data, 'applicant_id', proceed, errors)
 
             if proceed:
                 message = Message(
+                    applicant_id=applicant_id,
                     employer_name=employer_name,
                     employer_email=employer_email,
                     body=data['body']
