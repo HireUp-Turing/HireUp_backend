@@ -6,7 +6,6 @@ from api.database.models import Skill
 
 # Serializer
 def _skill_payload(skill):
-
     return {
         'id': skill.id,
         'name': skill.name
