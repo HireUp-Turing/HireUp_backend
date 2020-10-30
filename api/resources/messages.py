@@ -20,6 +20,20 @@ def _message_payload(message):
         'created_at' : message.created_at.__str__()
     }
 
+def _validate_field(data, field, proceed, errors, missing_okay=False):
+    # can't create a user if there is no unique email
+    # or if email/values/skills fields are empty
+    if field in data:
+        if len(data[field]) == 0:
+            proceed = False
+            errors.append(f"required '{field}' parameter is blank")
+    if not missing_okay and field not in data:
+        proceed = False
+        errors.append(f"required '{field}' parameter is missing")
+        data[field] = ''
+
+    return proceed, data[field], errors
+    
 class MessagesResource(Resource):
     """
     this Resource file is for our /messages endpoints
