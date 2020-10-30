@@ -40,8 +40,8 @@ _more details to come_
 
 ### Applicants
 #### GET `/api/v1/applicants`
-##### Response
-(all applicants)
+#### Response
+Returns all applicants
 ```
 {
   data: [{
@@ -65,9 +65,9 @@ _more details to come_
   }]
 }
 ```
-#### GET `/api/v1/applicants/search-options` or `/api/v1/applicants/attributes`
-##### Response
-(returns alphabetically ordered skills and values that are present in applicant profiles)
+#### GET `/api/v1/applicants/search-options`
+#### Response
+Returns alphabetically ordered skills and values that are present in applicant profiles
 ```
 {
     "success": true,
@@ -102,16 +102,16 @@ _more details to come_
 }
 ```
 #### GET `/api/v1/applicants/search`
-##### Request Body
-(one of these arrays can be empty, but not both)
+#### Request Body
+One of these arrays can be empty, but not both
 ```
 {
   "skills": [2, 4]
   "values": [3]
 }
 ```
-##### Response
-(returns any user that contains any property)
+#### Response
+Returns any user that contains any of the attributes selected in the search
 ```
 {
   data: [{
@@ -130,8 +130,7 @@ _more details to come_
 }
 ```
 #### GET `/api/v1/applicants/:applicant_id`
-(eventually this endpoint should require some sort of authentication and that the user is logged in)
-##### Response
+#### Response
 ```
   data: {
     "id": $id,
@@ -144,31 +143,44 @@ _more details to come_
 ​    "values": ["writing", "teamwork"]
   }
 ```
-### POST `/api/v1/applicants/
+
+#### POST `/api/v1/applicants/`
 #### Request
+Email, skills, and values are **required fields**
+
 ```
-data: {
+{
     "first_name": "Greyson",
     "last_name": "Johns",
     "bio": "I'm the best one you could possibly hire",
     "email": "google@google.com",
     "username": "Chipmunk",
-​    "skills": ["javascript", "react"],
-​    "values": ["writing", "teamwork"]
+​    "skills": [1, 2],
+​    "values": [2]
   }
 
 ```
+_New applicant cannot come in with empty arrays for either skills or values when being created, else response is 400 error message:_
+```
+{
+    "success": false,
+    "error": 400,
+    "errors": [
+        "required 'values' parameter is blank"
+    ]
+}
+```
 #### Response
-(returns the new users id)
+Returns the new users id
 ```
 data: {
   id: $id
 }
 ```
-### PATCH  `/api/v1/applicants/:applicant_id
-(eventually this endpoint should require some sort of authentication and that the user is logged in)
+#### PATCH  `/api/v1/applicants/:applicant_id`
 #### Request
-(contains at least one, if not all of the following properties)
+_This needs to be updated, as skills/values will probably need to come in as an array of id's, same as with the search function_
+
 ```
 {
   "first_name": "Now I'm John",
@@ -181,22 +193,24 @@ data: {
 }
 ```
 #### Response
+No specific response beyond `success`
+
 ### Messages
-#### GET `/api/v1/messages?applicant_id=<applicant_id>
-* use query params to send applicant_id! *
-(eventually this endpoint should require some sort of authentication and that the user is logged in)
-##### Response
-(returns messages associated with the provided user id)
+#### GET `/api/v1/messages?applicant_id=<applicant_id>`
+Use query params to send applicant_id!
+
+#### Response
+Returns messages associated with the provided user id
 ```
-data: {
-  [{
+data: [
+  {
     "id": "1",
     "applicant_id": "1",
 ​    "employer_name": "google",
 ​    "employer_email": "google@email.com",
 ​    "body": "message goes here",
 ​    "read_status": false,
-      "created_at": "Oct_21_etc_ect"
+    "created_at": "Oct_21_etc_ect"
 ​  }, {
 ​    "id": "2",
     "applicant_id": "1",
@@ -205,14 +219,51 @@ data: {
 ​    "body": "message goes here",
 ​    "read_status": true,
     "created_at": "Oct_21_etc_ect"
-​  }]
-}
+​  }
+]
 ```
-#### POST `/api/v1/messages
+#### POST `/api/v1/messages`
 ##### Request
-(body includes the id of the recipient)
+Body includes the id of the applicant (recipient), and the default `read_status` will be false so no need to send that in.
 ```
   {
-    id: id
+    "applicant_id": $id,
+    "employer_name": "Turing",
+    "employer_email" : "info@turing.com",
+    "body" : "message body here"
   }
+```
+
+### Skills
+#### GET `/api/v1/skills`
+#### Response
+```
+data: [
+  {
+    "id": $id,
+    "name": "creativity"
+  },
+  {
+    "id": $id,
+    "name": "javascript"
+  },
+  ...
+]
+```
+
+### Values
+#### GET `/api/v1/values`
+#### Response
+```
+data: [
+  {
+    "id": $id,
+    "name": "work/life balance"
+  },
+  {
+    "id": $id,
+    "name": "other random value"
+  },
+  ...
+]
 ```
