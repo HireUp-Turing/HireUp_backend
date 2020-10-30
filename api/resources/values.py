@@ -6,24 +6,24 @@ from flask_restful import Resource, abort
 from sqlalchemy.orm.exc import NoResultFound
 
 from api import db
-from api.database.models import Skill
+from api.database.models import Value
 
 # Serializer
-def _skill_payload(skill):
+def _value_payload(value):
 
     return {
-        'id': skill.id,
-        'name': skill.name
+        'id': value.id,
+        'name': value.name
     }
 
-class SkillsResource(Resource):
+class ValuesResource(Resource):
     """
-    /skills
+    /values
     """
 
     def get(self, *args, **kwargs):
-        skills = Skill.query.all()
-        results = [_skill_payload(skill) for skill in skills]
+        values = Value.query.all()
+        results = [_value_payload(value) for value in values]
 
         return {
             'success': True,
