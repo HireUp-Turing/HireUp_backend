@@ -29,6 +29,7 @@ def create_app(config_name='default'):
     @app.route('/')
     def root():
         return 'Hello World!'
+        # this is where we can eventually add documentation to display on the deployed site
 
     # Add resources
     from api.resources.applicants import ApplicantsResource, ApplicantResource
