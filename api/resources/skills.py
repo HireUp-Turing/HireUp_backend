@@ -16,7 +16,7 @@ def _skill_payload(skill):
         'name': skill.username
     }
 
-class Skills(Resource):
+class SkillsResource(Resource):
     """
     /skills
     """
