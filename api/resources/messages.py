@@ -24,22 +24,11 @@ def _validate_field(data, field, proceed, errors, missing_okay=False):
     # can't create a user if there is no unique email
     # or if email/values/skills fields are empty
     if field in data:
-        if len(data[field]) == 0:
+        if type(data[field]) == int:
+            proceed = True
+        elif len(data[field]) == 0:
             proceed = False
             errors.append(f"required '{field}' parameter is blank")
-    if not missing_okay and field not in data:
-        proceed = False
-        errors.append(f"required '{field}' parameter is missing")
-        data[field] = ''
-
-    return proceed, data[field], errors
-
-def _validate_id_field(data, field, proceed, errors, missing_okay=False):
-    # validation for integer field (like id)
-    if field in data:
-        if type(data[field]) != int:
-            proceed = False
-            errors.append(f"required '{field}' must be an integer")
     if not missing_okay and field not in data:
         proceed = False
         errors.append(f"required '{field}' parameter is missing")
@@ -93,7 +82,7 @@ class MessagesResource(Resource):
             data, 'employer_name', proceed, errors)
         proceed, employer_email, errors = _validate_field(
             data, 'employer_email', proceed, errors)
-        proceed, applicant_id, errors = _validate_id_field(
+        proceed, applicant_id, errors = _validate_field(
             data, 'applicant_id', proceed, errors)
 
         if proceed:
