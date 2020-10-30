@@ -24,7 +24,7 @@ def _applicant_payload(applicant):
 
 def _validate_field(data, field, proceed, errors, missing_okay=False):
     # can't create a user if there is no unique email
-    # or if email field is empty
+    # or if email/values/skills fields are empty
     if field in data:
         if len(data[field]) == 0:
             proceed = False
