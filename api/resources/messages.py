@@ -40,6 +40,46 @@ class MessagesResource(Resource):
             'data': results
         }, 200
 
+        def post(self, *args, **kwargs):
+            message, errors = self._create_message(json.loads(request.data))
+
+            if message is not None:
+                message_payload = _message_payload(message)
+                message_payload['success'] = True
+                return {
+                    'success': True,
+                    'data': message_payload
+                }, 201
+            else:
+                return {
+                    'success': False,
+                    'error': 400,
+                    'errors': errors
+                }, 400
+
+        def _create_message(self, data):
+            proceed = True
+            errors = []
+
+            # employer info can't be blank
+            proceed, employer_name, errors = _validate_field(
+                data, 'employer_name', proceed, errors)
+            proceed, employer_email, errors = _validate_field(
+                data, 'employer_email', proceed, errors)
+
+            if proceed:
+                message = Message(
+                    employer_name=employer_name,
+                    employer_email=employer_email,
+                    body=data['body']
+                )
+                db.session.add(message)
+                db.session.commit()
+
+                return message, errors
+            else:
+                return None, errors
+
 class MessageResource(Resource):
     """ single message Show:
     GET /messages/:id
