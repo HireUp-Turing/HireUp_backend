@@ -292,8 +292,8 @@ def db_seed():
     tech_founders = Values(name='technical founder(s)')
     db.sessions.add(tech_founders)
                 
-    PBC = Values(name='PBC / B-CORP')
-    db.sessions.add(PBC)
+    pbc = Values(name='PBC / B-CORP')
+    db.sessions.add(pbc)
 
     message1 = Message(employer_name='Turing', employer_email='info@turing.com', body='This is a message from Turing! You are awesome.')
     ruthie.messages.append(message1)
