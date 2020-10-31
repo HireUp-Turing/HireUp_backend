@@ -20,6 +20,22 @@ def _message_payload(message):
         'created_at' : message.created_at.__str__()
     }
 
+def _validate_field(data, field, proceed, errors, missing_okay=False):
+    # can't create a user if there is no unique email
+    # or if email/values/skills fields are empty
+    if field in data:
+        if type(data[field]) == int:
+            proceed = True
+        elif len(data[field]) == 0:
+            proceed = False
+            errors.append(f"required '{field}' parameter is blank")
+    if not missing_okay and field not in data:
+        proceed = False
+        errors.append(f"required '{field}' parameter is missing")
+        data[field] = ''
+
+    return proceed, data[field], errors
+
 class MessagesResource(Resource):
     """
     this Resource file is for our /messages endpoints
@@ -39,6 +55,49 @@ class MessagesResource(Resource):
             'success': True,
             'data': results
         }, 200
+
+    def post(self, *args, **kwargs):
+        message, errors = self._create_message(json.loads(request.data))
+
+        if message is not None:
+            message_payload = _message_payload(message)
+            message_payload['success'] = True
+            return {
+                'success': True,
+                'data': message_payload
+            }, 201
+        else:
+            return {
+                'success': False,
+                'error': 400,
+                'errors': errors
+            }, 400
+
+    def _create_message(self, data):
+        proceed = True
+        errors = []
+
+        # employer info can't be blank
+        proceed, employer_name, errors = _validate_field(
+            data, 'employer_name', proceed, errors)
+        proceed, employer_email, errors = _validate_field(
+            data, 'employer_email', proceed, errors)
+        proceed, applicant_id, errors = _validate_field(
+            data, 'applicant_id', proceed, errors)
+
+        if proceed:
+            message = Message(
+                applicant_id=applicant_id,
+                employer_name=employer_name,
+                employer_email=employer_email,
+                body=data['body']
+            )
+            db.session.add(message)
+            db.session.commit()
+
+            return message, errors
+        else:
+            return None, errors
 
 class MessageResource(Resource):
     """ single message Show:

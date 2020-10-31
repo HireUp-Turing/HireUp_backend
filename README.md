@@ -233,7 +233,19 @@ Body includes the id of the applicant (recipient), and the default `read_status`
     "body" : "message body here"
   }
 ```
-
+##### Response
+Returns the message in [data] with primary_key id, read_status, and created_at timestamp in addition to the details that were sent in to save.
+```
+  {
+    "id": 1,
+    "applicant_id": 2,
+    "employer_name": "Turing",
+    "employer_email" : "info@turing.com",
+    "body" : "message body here",
+    "read_status": "False",
+    "created_at": "<date_string"
+  }
+```
 ### Skills
 #### GET `/api/v1/skills`
 #### Response
