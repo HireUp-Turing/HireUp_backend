@@ -1,3 +1,4 @@
+# import pdb; pdb.set_trace()
 import datetime
 import json
 
@@ -9,7 +10,7 @@ from api import db
 from api.database.models import Applicant
 
 # HELPER METHODS
-def _search_results_payload(applicants):
+def _search_results_payload(filtered_applicants):
 
     return {
         'id': applicant.id,
@@ -20,8 +21,52 @@ def _search_results_payload(applicants):
         'values': [value.name for value in applicant.values],
     }
 
-def _find_applicants_with_skill(skill_id):
-    return db.engine.execute(f"SELECT DISTINCT applicants.* FROM applicants JOIN applicant_skills ON applicants.id = applicant_skills.applicant_id WHERE applicant_skills.skill_id = {skill_id};")
+def _create_sql_query(skill_ids, value_ids):
+    sql_query = "SELECT DISTINCT applicants.* FROM applicants JOIN applicant_skills ON applicants.id = applicant_skills.applicant_id JOIN applicant_values ON applicants.id = applicant_values.applicant_id WHERE "
+    skill_ids_length = len(skill_ids) - 1
+    value_ids_length = len(skill_ids) - 1
+    if skill_ids and value_ids:
+        for i in range(skill_ids_length):
+            sql_query = sql_query + f"applicant_skills.skill_id = {skill_ids[i]} OR "
+        for i in range(value_ids_length):
+            if i != value_ids_length:
+                sql_query = sql_query + f"applicant_values.value_id - {value_ids[i]} OR "
+            else:
+                sql_query = sql_query + f"applicant_values.value_id - {value_ids[i]}"
+    import pdb; pdb.set_trace()
+
+####HAVING ISSUES WITH ITERATING THROUGH IDS AND PRODUCING SOMETHING DIFFERENT FOR LAST ID IN ARRAY
+
+
+        # return sql_query
+        # for i in range(value_ids_length):
+        #     if value_ids[i + 1] is not None:
+        #         sql_query = sql_query + f"applicant_values.value_id - {value_ids[i]} OR "
+        #     else:
+        #         sql_query = sql_query + f"applicant_values.value_id - {value_ids[i]}"
+        # return sql_query
+    # elif skill_ids and not value_ids:
+    #     for i in range(skill_ids_length):
+    #         if skill_ids[i + 1] != None:
+    #             sql_query = sql_query + f"applicant_skills.skill_id - {skill_ids[i]} OR "
+    #         else:
+    #             sql_query = sql_query + f"applicant_skills.skill_id - {skill_ids[i]}"
+    #     return sql_query
+    # elif value_ids and not skill_ids:
+    #     for i in range(value_ids_length):
+    #         if value_ids[i + 1] != None:
+    #             sql_query = sql_query + f"applicant_values.value_id - {value_ids[i]} OR "
+    #         else:
+    #             sql_query = sql_query + f"applicant_values.value_id - {value_ids[i]}"
+    #     return sql_query
+
+
+    # for value_id in value_ids:
+    #     sq
+    # # for each skill id:
+    #     sql query << "OR applicant_skills.skill_id = {id}"
+    # return sql_query
+
 
 
 class SearchResultsResource(Resource):
@@ -32,32 +77,17 @@ class SearchResultsResource(Resource):
     def get(self, **kwargs):
         skill_ids = request.json['skills']
         value_ids = request.json['values']
-        applicants_results = []
-        # set empty search results array
-        # if skills array and values array both have contents
-        if skill_ids and value_ids:
-            import pdb; pdb.set_trace()
-            for skill_id in skill_ids:
-                applicant_results.append(_find_applicants_with_skill(skill_id))
-            # iterate over skills ids to find applicants with each skill
-            # push resulting collection of applicants into search results array
-            # iterate over values ids to find applicants with each value
-            # push resulting collection of applicants into search results array
-            # unique the resulting collection of applicants
-        # if skills array empty and values array has contents
-        elif skill_ids and not value_ids:
-            import pdb; pdb.set_trace()
-
-            # ^^ do the above just with values array
-        # if values array empty and skills array has contents
-        elif value_ids and not skill_ids:
-            import pdb; pdb.set_trace()
-            # ^^ do the above just with skills array
+        sql_query = _create_sql_query(skill_ids, value_ids)
+        if not skill_ids and not value_ids:
+            return {
+                'success': Flase,
+                'error': "error code",
+                'errors': "error messages"
+            }, "error code"
         else:
-            import pdb; pdb.set_trace()
-        # if both arrays empty
-            # error
-
-
-
-        applicants = db.engine.execute(f"SELECT DISTINCT applicants.* FROM applicants JOIN applicant_skills ON applicants.id = applicant_skills.applicant_id WHERE applicant_skills.skill_id = {skill_id};")
+            filtered_applicants = db.engine.execute(sql_query)
+            search_results_payload = _search_results_payload(filtered_applicants)
+            return {
+                'success': True,
+                'data': search_results_payload
+            }, 200
