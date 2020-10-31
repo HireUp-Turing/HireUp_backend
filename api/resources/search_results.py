@@ -24,16 +24,20 @@ def _search_results_payload(filtered_applicants):
 def _create_sql_query(skill_ids, value_ids):
     sql_query = "SELECT DISTINCT applicants.* FROM applicants JOIN applicant_skills ON applicants.id = applicant_skills.applicant_id JOIN applicant_values ON applicants.id = applicant_values.applicant_id WHERE "
     skill_ids_length = len(skill_ids) - 1
-    value_ids_length = len(skill_ids) - 1
+    value_ids_length = len(value_ids) - 1
     if skill_ids and value_ids:
-        for i in range(skill_ids_length):
-            sql_query = sql_query + f"applicant_skills.skill_id = {skill_ids[i]} OR "
-        for i in range(value_ids_length):
-            if i != value_ids_length:
-                sql_query = sql_query + f"applicant_values.value_id - {value_ids[i]} OR "
+        for skill_id in skill_ids:
+        # for i in range(skill_ids_length):
+            sql_query = sql_query + f"applicant_skills.skill_id = {skill_id} OR "
+        for value_id in value_ids:
+        # for i, value_id in enumerate(value_ids):
+        # for i in range(value_ids_length):
+            # if value_ids[i + 1] != None:
+            if value_id != value_ids[value_ids_length]:
+                sql_query = sql_query + f"applicant_values.value_id = {value_id} OR "
             else:
-                sql_query = sql_query + f"applicant_values.value_id - {value_ids[i]}"
-    import pdb; pdb.set_trace()
+                sql_query = sql_query + f"applicant_values.value_id = {value_id}"
+            import pdb; pdb.set_trace()
 
 ####HAVING ISSUES WITH ITERATING THROUGH IDS AND PRODUCING SOMETHING DIFFERENT FOR LAST ID IN ARRAY
 
