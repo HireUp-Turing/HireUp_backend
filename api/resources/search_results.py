@@ -1,4 +1,3 @@
-# import pdb; pdb.set_trace()
 import datetime
 import json
 
@@ -7,10 +6,10 @@ from flask_restful import Resource, abort
 from sqlalchemy.orm.exc import NoResultFound
 
 from api import db
-from api.database.models import Applicant
+from api.database.models import Applicant, ApplicantSkill, ApplicantValue
 
 # HELPER METHODS
-def _search_results_payload(filtered_applicants):
+def _applicant_payload(applicant):
 
     return {
         'id': applicant.id,
@@ -47,13 +46,7 @@ def _create_sql_query(skill_ids, value_ids):
                 sql_query = sql_query + f"applicant_values.value_id = {value_id} OR "
             else:
                 sql_query = sql_query + f"applicant_values.value_id = {value_id}"
-        import pdb; pdb.set_trace()
         return sql_query
-
-#### NEXT STEPS
-    # render error when no ids passed at all (line 73)
-    # make sure non-erroneous input renders correctly
-## add error handling for when "skills" and/or "values" JSON body keys are not present
 
 class SearchResultsResource(Resource):
     """
@@ -66,13 +59,20 @@ class SearchResultsResource(Resource):
         sql_query = _create_sql_query(skill_ids, value_ids)
         if not skill_ids and not value_ids:
             return {
-                'success': Flase,
-                'error': "error code",
-                'errors': "error messages"
-            }, "error code"
+                'success': False,
+                'error': 400,
+                'errors': "At least one skill or value id must be specified in order to filter applicant search results."
+            }, 400
+        ### will come back to building out this error condition later
+        # elif skill_ids is None or value_ids is None:
+        #     return {
+        #         'success': False,
+        #         'error': 400,
+        #         'errors': "skill_ids and value_ids keys must be present in request body."
+        #     }, 400
         else:
             filtered_applicants = db.engine.execute(sql_query)
-            search_results_payload = _search_results_payload(filtered_applicants)
+            search_results_payload = [_applicant_payload(applicant) for applicant in filtered_applicants]
             return {
                 'success': True,
                 'data': search_results_payload
