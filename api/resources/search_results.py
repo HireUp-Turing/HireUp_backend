@@ -10,7 +10,7 @@ from api.database.models import Applicant, ApplicantSkill, ApplicantValue
 
 # HELPER METHODS
 def _applicant_payload(applicant):
-
+    import pdb; pdb.set_trace()
     return {
         'id': applicant.id,
         'username': applicant.username,
@@ -72,8 +72,8 @@ class SearchResultsResource(Resource):
         #     }, 400
         else:
             filtered_applicants = db.engine.execute(sql_query)
-            search_results_payload = [_applicant_payload(applicant) for applicant in filtered_applicants]
+            search_results = [_applicant_payload(applicant) for applicant in filtered_applicants]
             return {
                 'success': True,
-                'data': search_results_payload
+                'data': search_results
             }, 200
