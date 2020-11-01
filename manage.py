@@ -257,43 +257,43 @@ def db_seed():
     db.session.add(friends)
 
     beer = Value(name='has good beer')
-    db.sessions.add(beer)
+    db.session.add(beer)
 
     layout = Value(name='thoughtful office layout')
-    db.sessions.add(layout)
+    db.session.add(layout)
 
     customer = Value(name='customer first')
-    db.sessions.add(customer)
+    db.session.add(customer)
 
     engineer = Value(name='engineering-driven')
-    db.sessions.add(engineer)
+    db.session.add(engineer)
 
     product = Value(name='product-driven')
-    db.sessions.add(product)
+    db.session.add(product)
 
     design_driven = Value(name='design-driven')
-    db.sessions.add(design_driven)
+    db.session.add(design_driven)
 
-    data_driven = Values(name='data_driven')
-    db.sessions.add(data_driven)
+    data_driven = Value(name='data_driven')
+    db.session.add(data_driven)
 
-    rapid_growth = Values(name='rapidly growing team')
-    db.sessions.add(rapid_growth)
+    rapid_growth = Value(name='rapidly growing team')
+    db.session.add(rapid_growth)
 
-    bb = Values(name='B2B')
-    db.sessions.add(bb)
+    bb = Value(name='B2B')
+    db.session.add(bb)
 
-    bc = Values(name='B2C')
-    db.sessions.add(bc)
+    bc = Value(name='B2C')
+    db.session.add(bc)
 
-    self_funded = Values(name='self funded')
-    db.sessions.add(self_funded)
+    self_funded = Value(name='self funded')
+    db.session.add(self_funded)
 
-    tech_founders = Values(name='technical founder(s)')
-    db.sessions.add(tech_founders)
+    tech_founders = Value(name='technical founder(s)')
+    db.session.add(tech_founders)
 
-    pbc = Values(name='PBC / B-CORP')
-    db.sessions.add(pbc)
+    pbc = Value(name='PBC / B-CORP')
+    db.session.add(pbc)
 
     message1 = Message(employer_name='Turing', employer_email='info@turing.com', body='This is a message from Turing! You are awesome.')
     ruthie.messages.append(message1)
