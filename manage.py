@@ -51,40 +51,40 @@ def db_seed():
 
     js = Skill(name='javascript')
     db.session.add(js)
-    
+
     react = Skill(name='react')
     db.session.add(react)
-    
+
     ts = Skill(name='typescript')
     db.session.add(ts)
 
     redux = Skill(name='redux')
     db.session.add(redux)
-    
+
     git = Skill(name='git')
     db.session.add(git)
 
     microsoft = Skill(name='microsoft')
     db.session.add(microsoft)
-    
+
     adobe = Skill(name='Adobe Creative Suites')
     db.session.add(adobe)
-    
+
     vue = Skill(name='vue')
     db.session.add(vue)
-    
+
     angular = Skill(name='angular')
     db.session.add(angular)
-    
+
     express = Skill(name='express')
     db.session.add(express)
-    
+
     knex = Skill(name='knex')
     db.session.add(knex)
-    
+
     psql = Skill(name='Postgres')
     db.session.add(psql)
-    
+
     communication = Skill(name='communication')
     db.session.add(communication)
 
@@ -101,17 +101,17 @@ def db_seed():
     db.session.add(customer_service)
 
     teamwork = Skill(name='teamwork')
-    db.session.add(teamwork)"
+    db.session.add(teamwork)
 
-    active_listening = Skill(name='active listening')    
+    active_listening = Skill(name='active listening')
     db.session.add(active_listening)
-    
+
     negotiation = Skill(name='negotiation')
     db.session.add(negotiation)
 
     conflict_resolution = Skill(name='conflict resolution')
     db.session.add(conflict_resolution)
-    
+
     empathy = Skill(name='empathy')
     db.session.add(empathy)
 
@@ -135,7 +135,7 @@ def db_seed():
 
     teaching = Skill(name='teaching')
     db.session.add(teaching)
-    
+
     design = Skill(name='design')
     db.session.add(design)
 
@@ -162,10 +162,10 @@ def db_seed():
 
     seo = Skill(name='SEO/SEM marketing)
     db.session.add(seo)
-    
+
     cloud = Skill(name='cloud and distributed')
     db.session.add(cloud)
-        
+
     data_pres = Skill(name='data presentation')
     db.session.add(data_pres)
 
@@ -204,7 +204,7 @@ def db_seed():
 
     hats = Value(name='wears many hats')
     db.session.add(hats)
-                
+
     heavy_team = Value(name='heavily team oriented')
     db.session.add(heavy_team)
 
@@ -240,8 +240,8 @@ def db_seed():
 
     physical_wellness = Value(name='supports physical wellness')
     db.session.add(physical_wellness)
-    
-    psychological = Value(name='supports mental health') 
+
+    psychological = Value(name='supports mental health')
     db.session.add(psychological)
 
     lunch = Value(name='eats lunch together')
@@ -255,7 +255,7 @@ def db_seed():
 
     friends = Value(name='friends outside of work')
     db.session.add(friends)
-    
+
     beer = Value(name='has good beer')
     db.sessions.add(beer)
 
@@ -265,12 +265,12 @@ def db_seed():
     customer = Value(name='customer first')
     db.sessions.add(customer)
 
-    engineer = Value(name='engineering-driven')  
+    engineer = Value(name='engineering-driven')
     db.sessions.add(engineer)
-                
+
     product = Value(name='product-driven')
     db.sessions.add(product)
-    
+
     design_driven = Value(name='design-driven')
     db.sessions.add(design_driven)
 
@@ -288,10 +288,10 @@ def db_seed():
 
     self_funded = Values(name='self funded')
     db.sessions.add(self_funded)
-                
+
     tech_founders = Values(name='technical founder(s)')
     db.sessions.add(tech_founders)
-                
+
     pbc = Values(name='PBC / B-CORP')
     db.sessions.add(pbc)
 
