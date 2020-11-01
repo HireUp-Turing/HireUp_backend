@@ -158,7 +158,7 @@ def db_seed():
     db.session.add(economics)
 
     automotive_services = Skill(name='automotive services')
-    db.session.add(automotive_servcices)
+    db.session.add(automotive_services)
 
     seo = Skill(name='SEO/SEM marketing')
     db.session.add(seo)
