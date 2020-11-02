@@ -20,6 +20,15 @@ def _applicant_payload(applicant):
         'values': [value.name for value in applicant.values],
     }
 
+def _filter_applicants(skill_ids, value_ids):
+    if skill_ids and value_ids:
+        applicants = None
+    elif skill_ids and not value_ids:
+        applicants = db.session.query(Applicant).join(Skill, Applicant.skills).filter(Skill.id.in_(skill_ids))
+    elif value_ids and not skill_ids:
+        applicants = db.session.query(Applicant).join(Value, Applicant.values).filter(Value.id.in_(value_ids))
+    return applicants
+
 class SearchResultsResource(Resource):
     """
     this Resource file is for our /applicants/search endpoint
@@ -29,8 +38,6 @@ class SearchResultsResource(Resource):
         skill_ids = request.json['skills']
         value_ids = request.json['values']
 
-        # sql_query = _create_sql_query(skill_ids, value_ids)
-        # import pdb; pdb.set_trace()
         if not skill_ids and not value_ids:
             return {
                 'success': False,
@@ -47,10 +54,8 @@ class SearchResultsResource(Resource):
         else:
             # filtered_applicants = db.engine.execute(sql_query)
             # search_results = [_applicant_payload(applicant) for applicant in filtered_applicants]
-
-            applicants_filtered_by_skills = db.session.query(Applicant).join(Skill, Applicant.skills).filter(Skill.id.in_(skill_ids))
-            import pdb; pdb.set_trace()
-            search_results = [_applicant_payload(applicant) for applicant in applicants]
+            filtered_applicants = _filter_applicants(skill_ids, value_ids)
+            search_results = [_applicant_payload(applicant) for applicant in filtered_applicants]
             return {
                 'success': True,
                 'data': search_results
