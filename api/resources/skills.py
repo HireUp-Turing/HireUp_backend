@@ -8,7 +8,7 @@ from api.database.models import Skill
 def _skill_payload(skill):
     return {
         'id': skill.id,
-        'name': skill.name
+        'attribute': skill.name
     }
 
 class SkillsResource(Resource):
