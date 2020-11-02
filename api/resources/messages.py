@@ -78,14 +78,14 @@ class MessagesResource(Resource):
         errors = []
 
         # employer info can't be blank
-        proceed, employer_name, errors = _validate_field(
+        proceed1, employer_name, errors = _validate_field(
             data, 'employer_name', proceed, errors)
-        proceed, employer_email, errors = _validate_field(
+        proceed2, employer_email, errors = _validate_field(
             data, 'employer_email', proceed, errors)
-        proceed, applicant_id, errors = _validate_field(
+        proceed3, applicant_id, errors = _validate_field(
             data, 'applicant_id', proceed, errors)
-
-        if proceed:
+            
+        if proceed1 and proceed2 and proceed3:
             message = Message(
                 applicant_id=applicant_id,
                 employer_name=employer_name,
