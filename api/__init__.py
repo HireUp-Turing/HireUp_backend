@@ -29,11 +29,13 @@ def create_app(config_name='default'):
     @app.route('/')
     def root():
         return 'Hello World!'
+        # this is where we can eventually add documentation to display on the deployed site
 
     # Add resources
     from api.resources.applicants import ApplicantsResource, ApplicantResource
     from api.resources.messages import MessagesResource, MessageResource
     from api.resources.search_options import SearchOptionsResource
+    from api.resources.search_results import SearchResultsResource
     from api.resources.skills import SkillsResource
     from api.resources.values import ValuesResource
 
@@ -42,6 +44,7 @@ def create_app(config_name='default'):
     api.add_resource(MessageResource, '/api/v1/messages/<message_id>')
     api.add_resource(MessagesResource, '/api/v1/messages')
     api.add_resource(SearchOptionsResource, '/api/v1/applicants/search-options')
+    api.add_resource(SearchResultsResource, '/api/v1/applicants/search')
     api.add_resource(SkillsResource, '/api/v1/skills')
     api.add_resource(ValuesResource, '/api/v1/values')
 
