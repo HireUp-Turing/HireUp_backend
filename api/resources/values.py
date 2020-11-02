@@ -8,7 +8,7 @@ from api.database.models import Value
 def _value_payload(value):
     return {
         'id': value.id,
-        'name': value.name
+        'attribute': value.name
     }
 
 class ValuesResource(Resource):

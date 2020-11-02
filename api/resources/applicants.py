@@ -15,7 +15,6 @@ def _applicant_payload(applicant):
     return {
         'id': applicant.id,
         'username': applicant.username,
-        'email': applicant.email,
         'bio': applicant.bio,
         # 'skills': [{'id': skill.id, 'name': skill.name} for skill in applicant.skills],
         'skills': [skill.name for skill in applicant.skills],
@@ -64,7 +63,6 @@ class ApplicantsResource(Resource):
 
         if applicant is not None:
             applicant_payload = _applicant_payload(applicant)
-            applicant_payload['success'] = True
             return {
                 'success': True,
                 'data': applicant_payload
