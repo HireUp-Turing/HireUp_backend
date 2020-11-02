@@ -52,43 +52,9 @@ class SearchResultsResource(Resource):
         #         'errors': "skill_ids and value_ids keys must be present in request body."
         #     }, 400
         else:
-            # filtered_applicants = db.engine.execute(sql_query)
-            # search_results = [_applicant_payload(applicant) for applicant in filtered_applicants]
             filtered_applicants = _filter_applicants(skill_ids, value_ids)
             search_results = [_applicant_payload(applicant) for applicant in filtered_applicants]
             return {
                 'success': True,
                 'data': search_results
             }, 200
-
-
-
-
-
-# def _create_sql_query(skill_ids, value_ids):
-#     sql_query = "SELECT DISTINCT applicants.* FROM applicants JOIN applicant_skills ON applicants.id = applicant_skills.applicant_id JOIN applicant_values ON applicants.id = applicant_values.applicant_id WHERE "
-#     skill_ids_length = len(skill_ids) - 1
-#     value_ids_length = len(value_ids) - 1
-#     if skill_ids and value_ids:
-#         for skill_id in skill_ids:
-#             sql_query = sql_query + f"applicant_skills.skill_id = {skill_id} OR "
-#         for value_id in value_ids:
-#             if value_id != value_ids[value_ids_length]:
-#                 sql_query = sql_query + f"applicant_values.value_id = {value_id} OR "
-#             else:
-#                 sql_query = sql_query + f"applicant_values.value_id = {value_id}"
-#         return sql_query
-#     elif skill_ids and not value_ids:
-#         for skill_id in skill_ids:
-#             if skill_id != skill_ids[skill_ids_length]:
-#                 sql_query = sql_query + f"applicant_skills.skill_id = {skill_id} OR "
-#             else:
-#                 sql_query = sql_query + f"applicant_skills.skill_id = {skill_id}"
-#         return sql_query
-#     elif value_ids and not skill_ids:
-#         for value_id in value_ids:
-#             if value_id != value_ids[value_ids_length]:
-#                 sql_query = sql_query + f"applicant_values.value_id = {value_id} OR "
-#             else:
-#                 sql_query = sql_query + f"applicant_values.value_id = {value_id}"
-#         return sql_query
