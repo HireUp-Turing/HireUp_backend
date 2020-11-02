@@ -8,6 +8,7 @@
 ### Jump To
 - [About](#about)
 - [Setup](#setup)
+- [Database Schema](#database-schema)
 
 ### About
 HireUp aims to minimize bias in the hiring process, and reduce efforts required of job applicants to produce application materials and of employers to read through piles of those materials. This API is consumed by the the [HireUp front-end application](https://github.com/HireUp-Turing/HireUp_frontend).
@@ -32,6 +33,7 @@ HireUp aims to minimize bias in the hiring process, and reduce efforts required 
   $ python manage.py db upgrade # runs migrations on your dev database
   ```
   - `$ python run.py` to run server on `localhost:5000`
+
   _If you get errors concerning the `FLASK_APP` environment not being set, try `$ export FLASK_APP=manage.py`_
 
 <!-- do we still need this part? -->
@@ -46,7 +48,7 @@ _more details to come_
 - `python -m pytest -v`
 
 ### Database Schema
-![image](https://user-images.githubusercontent.com/62635544/96819356-a6626380-13e0-11eb-8398-eef92ca100f3.png)
+![image](https://user-images.githubusercontent.com/62635544/97842714-49e72a00-1ca5-11eb-8787-f188eb7d8ed3.png)
 
 ### Endpoint Map
 
