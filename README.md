@@ -106,7 +106,7 @@ _add info about coverage_
   ```
 
 #### GET `/api/v1/applicants/:applicant_id`
-###### Response:
+###### Response: Does not include any identifying information about the applicant
   ```JSON
   {
       "success": true,
@@ -133,7 +133,6 @@ _add info about coverage_
       "first_name": "Greyson",
       "last_name": "Johns",
       "bio": "I'm the best one you could possibly hire",
-      "email": "greyson@google.com",
       "username": "Chipmunk",
       "skills": [2, 3],
       "values": [2]
@@ -185,7 +184,7 @@ Error message response:
   }
   ```
 
-<!-- commenting this out until we have this request body figured out -->
+<!-- COMMENTED OUT BC THIS ENDPOINT IS NOT YET EXPOSED / IT'S AN EXTENSION -->
 <!-- #### PATCH  `/api/v1/applicants/:applicant_id`
 **Request**:
 _This needs to be updated, as skills/values will probably need to come in as an array of id's, same as with the search function_
@@ -250,7 +249,55 @@ No specific response beyond `success` -->
 }
 ```
 ###### Response: Returns all applicants that partially match the attributes specified by the request
-```
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "username": "Chipmunk",
+            "email": "gaby@hireup.com",
+            "bio": "Noodle's mom!",
+            "skills": [
+                {
+                    "attribute": "rails"
+                },
+                {
+                    "attribute": "ruby"
+                }
+            ],
+            "values": [
+                {
+                    "attribute": "creativity"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "username": "Anonymous Giraffe",
+            "email": "ruthie@hireup.com",
+            "bio": "Noodle's mom's accountabilabuddy!",
+            "skills": [
+                {
+                    "attribute": "rails"
+                },
+                {
+                    "attribute": "flask"
+                }
+            ],
+            "values": [
+                {
+                    "attribute": "creativity"
+                },
+                {
+                    "attribute": "mentorship"
+                }
+            ]
+        }
+    ]
+}
+
+```json
 {
     "success": true,
     "data": [
@@ -309,12 +356,11 @@ Example erroneous request:
 Error message response:
   ```JSON
   {
-    "success": false,
-    "error": 400,
-    "errors": "At least one skill or value id must be specified in order to filter applicant search results."
-  }
-  ```
-
+  "success": false,
+  "error": 400,
+  "errors": "At least one skill or value id must be specified in order to filter applicant search results."
+}
+```
 
 ### Messages
 #### GET `/api/v1/messages?applicant_id=<applicant_id>`
@@ -347,10 +393,11 @@ Error message response:
 }
 ```
 #### POST `/api/v1/messages`
-###### Request: Body includes the id of the applicant (recipient), and the default `read_status` will be false so no need to send that in.
+###### Request: Body should specify `applicant_id` (referencing the message recipient), `employer_name`, `employer_email`, and a message `body`. `read_status` defaults to `false` and should not be included in the request body.
+
 ```
   {
-    "applicant_id": $id,
+    "applicant_id": 1,
     "employer_name": "Turing",
     "employer_email" : "info@turing.com",
     "body" : "We're interested in interviewing you for our Back-End Instructor role. You'll rock our students' worlds!"
@@ -372,6 +419,7 @@ Error message response:
     }
 }
 ```
+<!-- add documentation re: error handling here -->
 
 ### Skills
 #### GET `/api/v1/skills`
