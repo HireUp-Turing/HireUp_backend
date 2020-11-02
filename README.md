@@ -150,7 +150,7 @@ _add info about coverage_
   }
   ```
 
-###### Error handling: New applicant cannot come in with empty arrays for either skills or values when being created, else response is 400 error message  
+###### Error handling: Request body with empty arrays for either skills or values when being created will produce a 400 error message  
 Example erroneous request:
   ```JSON
   {
@@ -193,6 +193,7 @@ _This needs to be updated, as skills/values will probably need to come in as an 
 #### Response
 No specific response beyond `success` -->
 
+### Searching
 #### GET `/api/v1/applicants/search-options`
 ###### Response: Returns alphabetically ordered skills and values that are actively associated with applicant records. This endpoint is used on the front-end in in order to populate search filter options for employers to browse applicant profiles.
 ```
@@ -286,88 +287,129 @@ No specific response beyond `success` -->
     ]
 }
 ```
+###### Error handling: A request body that does not specify any skills or values will produce a 400 error message  
+Example erroneous request:
+  ```JSON
+  {"skills": [],
+  "values": []
+      }
+  # missing skills and values ids
+  ```
+Error message response:
+  ```JSON
+  {
+    "success": false,
+    "error": 400,
+    "errors": "At least one skill or value id must be specified in order to filter applicant search results."
+  }
+  ```
+
 
 ### Messages
 #### GET `/api/v1/messages?applicant_id=<applicant_id>`
-Use query params to send applicant_id!
+###### Request: Use query params to specify the id of the applicant whose messages need to be retrieved
 
-#### Response
-Returns messages associated with the provided user id
+###### Response: Returns messages associated with the specified user id
 ```
-data: [
-  {
-    "id": "1",
-    "applicant_id": "1",
-​    "employer_name": "google",
-​    "employer_email": "google@email.com",
-​    "body": "message goes here",
-​    "read_status": false,
-    "created_at": "Oct_21_etc_ect"
-​  }, {
-​    "id": "2",
-    "applicant_id": "1",
-​    "employer_name": "Aerion Inc",
-​    "employer_email": "aerioninc@email.com",
-​    "body": "message goes here",
-​    "read_status": true,
-    "created_at": "Oct_21_etc_ect"
-​  }
-]
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "applicant_id": 2,
+            "employer_name": "Google",
+            "employer_email": "info@turing.com",
+            "body": "We know you'll rock our world as CEO of Google - please interview with us.",
+            "read_status": false,
+            "created_at": "2020-11-01 14:11:53.212912-07:00"
+        },
+        {
+            "id": 2,
+            "applicant_id": 2,
+            "employer_name": "Aerion Inc",
+            "employer_email": "aerioninc@email.com",
+            "body": "Come work for us. Pretty please.",
+            "read_status": true,
+            "created_at": "2020-11-01 14:11:53.212912-07:00"
+        }
+    ]
+}
 ```
 #### POST `/api/v1/messages`
-##### Request
-Body includes the id of the applicant (recipient), and the default `read_status` will be false so no need to send that in.
+###### Request: Body includes the id of the applicant (recipient), and the default `read_status` will be false so no need to send that in.
 ```
   {
     "applicant_id": $id,
     "employer_name": "Turing",
     "employer_email" : "info@turing.com",
-    "body" : "message body here"
+    "body" : "We're interested in interviewing you for our Back-End Instructor role. You'll rock our students' worlds!"
   }
 ```
-##### Response
-Returns the message in [data] with primary_key id, read_status, and created_at timestamp in addition to the details that were sent in to save.
+###### Response: Returns the new message attributes and its id
 ```
-  {
-    "id": 1,
-    "applicant_id": 2,
-    "employer_name": "Turing",
-    "employer_email" : "info@turing.com",
-    "body" : "message body here",
-    "read_status": "False",
-    "created_at": "<date_string"
-  }
+{
+    "success": true,
+    "data": {
+        "id": 3,
+        "applicant_id": 1,
+        "employer_name": "Blop",
+        "employer_email": "careers@blop.com",
+        "body": "We're desperate to hire you at Blop Corp. Will you interview with us this Friday?",
+        "read_status": false,
+        "created_at": "2020-11-02 02:10:15.909406-07:00",
+        "success": true
+    }
+}
 ```
+
 ### Skills
 #### GET `/api/v1/skills`
-#### Response
+###### Response: Returns all skills. Used on the front-end to populate the list of skills an applicant may select when creating their profile.
 ```
-data: [
-  {
-    "id": $id,
-    "name": "creativity"
-  },
-  {
-    "id": $id,
-    "name": "javascript"
-  },
-  ...
-]
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "name": "rails"
+        },
+        {
+            "id": 2,
+            "name": "flask"
+        },
+        {
+            "id": 3,
+            "name": "ruby"
+        },
+        {
+            "id": 4,
+            "name": "java"
+        },
+        ...
+      ]
+    }
 ```
 
 ### Values
 #### GET `/api/v1/values`
-#### Response
+###### Response: Returns all values. Used on the front-end to populate the list of values an applicant may select when creating their profile.
 ```
-data: [
-  {
-    "id": $id,
-    "name": "work/life balance"
-  },
-  {
-    "id": $id,
-    "name": "other random value"
-  },
-  ...
-]
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "name": "creativity"
+        },
+        {
+            "id": 2,
+            "name": "mentorship"
+        },
+        {
+            "id": 3,
+            "name": "engages with community"
+        },
+        ...
+      ]
+    }
 ```
