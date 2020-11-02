@@ -150,8 +150,8 @@ Creates new applicant and returns attributes including the new user's id
       }
   }
   ```
-**Error handling**: New applicant cannot come in with empty arrays for either skills or values when being created, else response is 400 error message
-Erroneous request body:
+**Error handling**: New applicant cannot come in with empty arrays for either skills or values when being created, else response is 400 error message  
+Example erroneous request:
   ```JSON
   {
       "first_name": "Greyson",
