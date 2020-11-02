@@ -61,6 +61,7 @@ _add info about coverage_
 **Request**: no request body required
 <details>
   <summary>**Response**: Returns all applicants</summary>
+  
   ```JSON
   {
       "success": true,
