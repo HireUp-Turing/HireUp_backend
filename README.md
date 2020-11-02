@@ -7,6 +7,7 @@
 
 ### Jump To
 - [About](#about)
+- [Contributors](#contributors)
 - [Setup](#setup)
 - [CLI Commands](#cli-commands)
 - [Testing](#testing)
@@ -17,9 +18,14 @@
   - [Messages](#messages)
   - [Skills](#skills)
   - [Values](#values)
+- [Technologies](#technologies)
 
 ## About
 HireUp aims to minimize bias in the hiring process, and reduce efforts required of job applicants to produce application materials and of employers to read through piles of those materials. This API is consumed by the the [HireUp front-end application](https://github.com/HireUp-Turing/HireUp_frontend).
+
+## contributors
+- Ruthie Rabinovitch | [GitHub](https://github.com/rrabinovitch) | [LinkedIn](https://www.linkedin.com/in/ruthie-r/)
+- Gaby Méndez | [GitHub](https://github.com/gabichuelas) | [LinkedIn](https://www.linkedin.com/in/gabymendez/)
 
 ## Setup
 - If you do not yet have `pyenv`, Python3, or Pip3 installed, follow [these](https://opensource.com/article/19/5/python-3-default-mac#what-to-do) instructions.
@@ -61,7 +67,7 @@ _add info about coverage_
 
 ## Endpoint Documentation
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/e5f0567156412937dafe)  
-###### Base URL: Use [localhost:5000](localhost:5000) to explore endpoints with local server and [https://hireup-be.herokuapp.com/](https://hireup-be.herokuapp.com/) to explore the endpoints via the live Heroku app
+###### Base URL: Use `localhost:5000` to explore endpoints with local server and `hireup-be.herokuapp.com` to explore the endpoints via the live Heroku app
 
 ### Applicants
 #### GET `/api/v1/applicants`
@@ -420,3 +426,11 @@ Error message response:
       ]
     }
 ```
+
+## Technologies
+<!-- fill in versions and additional notes later -->
+- Python
+- Flask
+- SQLAlchemy
+- Pytest
+- TravisCI
