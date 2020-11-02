@@ -47,10 +47,8 @@ HireUp aims to minimize bias in the hiring process, and reduce efforts required 
   $ python manage.py db migrate # add explanation here
   $ python manage.py db upgrade # runs migrations on your dev database
   ```
-  <!-- do the commands for creating the local db's work without entering the psql console? -->
 - `$ python run.py` to run server on `localhost:5000` (_If you get errors concerning the `FLASK_APP` environment not being set, try `$ export FLASK_APP=manage.py`_)
 
-<!-- do we still need this part? -->
 <!-- _These instructions will be modified once an `.env` file is added to this repo._ -->
 
 ## CLI commands
