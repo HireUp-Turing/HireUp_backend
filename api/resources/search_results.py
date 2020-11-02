@@ -48,7 +48,8 @@ class SearchResultsResource(Resource):
             # filtered_applicants = db.engine.execute(sql_query)
             # search_results = [_applicant_payload(applicant) for applicant in filtered_applicants]
 
-            applicants = db.session.query(Applicant).join(Skill, Applicant.skills).filter(Skill.id == 1)
+            applicants_filtered_by_skills = db.session.query(Applicant).join(Skill, Applicant.skills).filter(Skill.id.in_(skill_ids))
+            import pdb; pdb.set_trace()
             search_results = [_applicant_payload(applicant) for applicant in applicants]
             return {
                 'success': True,
