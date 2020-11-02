@@ -13,10 +13,10 @@
 - [Database Schema](#database-schema)
 - [Endpoint Documentation](#endpoint-documentation)
 
-### About
+## About
 HireUp aims to minimize bias in the hiring process, and reduce efforts required of job applicants to produce application materials and of employers to read through piles of those materials. This API is consumed by the the [HireUp front-end application](https://github.com/HireUp-Turing/HireUp_frontend).
 
-### Setup
+## Setup
 - If you do not yet have `pyenv`, Python3, or Pip3 installed, follow [these](https://opensource.com/article/19/5/python-3-default-mac#what-to-do) instructions.
 - Clone repo: `git clone git@github.com:HireUp-Turing/HireUp_backend.git`
 - Virtual Environment Setup:
@@ -42,47 +42,110 @@ HireUp aims to minimize bias in the hiring process, and reduce efforts required 
 <!-- do we still need this part? -->
 <!-- _These instructions will be modified once an `.env` file is added to this repo._ -->
 
-### CLI commands
+## CLI commands
 - `$ python manage.py routes` returns available routes
 - _Coming soon... database migrate/seeding commands._
 
-### Testing
+## Testing
 _more details to come_
 _add info about coverage_
 - Run tests: `python -m pytest -v`
 
-### Database Schema
+## Database Schema
 ![image](https://user-images.githubusercontent.com/62635544/97842714-49e72a00-1ca5-11eb-8787-f188eb7d8ed3.png)
 
-### Endpoint Documentation
+## Endpoint Documentation
 
 ### Applicants
 #### GET `/api/v1/applicants`
-#### Response
-Returns all applicants
-```
-{
-  data: [{
-​    "id": "1",
-​    "username": "Chipmunk",
-    "bio": "I'm the best one you could possibly hire",
-​    "skills": ["javascript", "react"],
-​    "values": ["writing", "teamwork"]
-  }, {
-​    "id": "2",
-​    "username": "BeBe",
-    "bio": "I'm the best one you could possibly hire",
-​    "skills": ["javascript", "react"],
-​    "values": ["paired programming", "magic"]
-  }, {
-​    "id": "3",
-​    "username": "Wingnut",
-    "bio": "I'm the best one you could possibly hire",
-​    "skills": ["react"],
-​    "values": ["paired programming", "teamwork"]
-  }]
-}
-```
+**Request**: no request body required
+<details>
+  <summary>**Response**: Returns all applicants</summary>
+  ```JSON
+  {
+      "success": true,
+      "data": [
+          {
+              "id": 1,
+              "username": "Anonymous Giraffe",
+              "email": "gaby@hireup.com",
+              "bio": "Noodle's mom!",
+              "skills": [
+                  "rails",
+                  "ruby"
+              ],
+              "values": [
+                  "creativity"
+              ]
+          },
+          {
+              "id": 2,
+              "username": "Famous Hippo",
+              "email": "ruthie@hireup.com",
+              "bio": "Noodle's mom's accountabilabuddy!",
+              "skills": [
+                  "rails",
+                  "flask"
+              ],
+              "values": [
+                  "creativity",
+                  "mentorship"
+              ]
+          },
+          {
+              "id": 3,
+              "username": "Striped Giraffe",
+              "email": "greyson@hireup.com",
+              "bio": "zebra",
+              "skills": [
+                  "javascript",
+                  "knex",
+                  "teamwork",
+                  "active listening",
+                  "flask"
+              ],
+              "values": [
+                  "mentorship",
+                  "continuous feedback",
+                  "impressive team members",
+                  "open communication",
+                  "wears many hats"
+              ]
+          },
+          {
+              "id": 4,
+              "username": "Spotted Lamp",
+              "email": "erin@hireup.com",
+              "bio": "turquoise",
+              "skills": [
+                  "Postgres",
+                  "express"
+              ],
+              "values": [
+                  "wears many hats",
+                  "open communication",
+                  "creativity"
+              ]
+          },
+          {
+              "id": 5,
+              "username": "Bright Eel",
+              "email": "amy@hireup.com",
+              "bio": "helmet",
+              "skills": [
+                  "express",
+                  "flask"
+              ],
+              "values": [
+                  "mentorship",
+                  "heavily team oriented"
+              ]
+          }
+      ]
+  }
+  ```
+</details>
+
 #### GET `/api/v1/applicants/search-options`
 #### Response
 Returns alphabetically ordered skills and values that are present in applicant profiles
