@@ -4,6 +4,7 @@ import json
 from flask import request
 from flask_restful import Resource, abort
 from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy import or_
 
 from api import db
 from api.database.models import Applicant, Skill, Value
@@ -22,7 +23,7 @@ def _applicant_payload(applicant):
 
 def _filter_applicants(skill_ids, value_ids):
     if skill_ids and value_ids:
-        applicants = None
+        applicants = db.session.query(Applicant).join(Skill, Applicant.skills).join(Value, Applicant.values).filter(or_(Skill.id.in_(skill_ids), Value.id.in_(value_ids)))
     elif skill_ids and not value_ids:
         applicants = db.session.query(Applicant).join(Skill, Applicant.skills).filter(Skill.id.in_(skill_ids))
     elif value_ids and not skill_ids:
