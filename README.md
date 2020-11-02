@@ -194,8 +194,7 @@ _This needs to be updated, as skills/values will probably need to come in as an 
 No specific response beyond `success` -->
 
 #### GET `/api/v1/applicants/search-options`
-###### Response:
-Returns alphabetically ordered skills and values that are actively associated with applicant records. Used to populate search filter options for employers to browse applicant profiles.
+###### Response: Returns alphabetically ordered skills and values that are actively associated with applicant records. Used to populate search filter options for employers to browse applicant profiles.
 ```
 {
     "success": true,
