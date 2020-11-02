@@ -64,7 +64,6 @@ class ApplicantsResource(Resource):
 
         if applicant is not None:
             applicant_payload = _applicant_payload(applicant)
-            applicant_payload['success'] = True
             return {
                 'success': True,
                 'data': applicant_payload
