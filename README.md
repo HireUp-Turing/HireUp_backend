@@ -21,7 +21,7 @@ HireUp aims to minimize bias in the hiring process, and reduce efforts required 
   - Activate the virtual environment: `$ source venv/bin/activate` (Run `$ deactivate` to deactivate the virtual environment when done working with the app)
 - Install Python packages: `$ pip install -r requirements.txt`
 - Set up local databases
-  ```
+  ```shell
   $ createdb hireup_dev``$ createdb hireup_test
   $ export DATABASE_URL=postgresql://localhost:5432/hireup_dev # creates your dev database
   $ python manage.py db migrate # add explanation here
