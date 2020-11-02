@@ -42,7 +42,7 @@ class SearchResultsResource(Resource):
     this Resource file is for our /applicants/search endpoint
     """
 
-    def get(self, **kwargs):
+    def post(self, **kwargs):
         skill_ids = request.json['skills']
         value_ids = request.json['values']
 

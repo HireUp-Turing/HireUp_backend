@@ -240,7 +240,7 @@ No specific response beyond `success` -->
 }
 ```
 
-#### GET `/api/v1/applicants/search`
+#### POST `/api/v1/applicants/search`
 ###### Request Body: Attribute arrays contain ids associated with the selected skills and values attributes on the front-end search page. One of the arrays can be empty, but not both.
 ```
 {
