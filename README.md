@@ -17,22 +17,21 @@ HireUp aims to minimize bias in the hiring process, and reduce efforts required 
 - Clone repo: `git clone git@github.com:HireUp-Turing/HireUp_backend.git`
 - Virtual Environment Setup:
   - Build and activate a virtual environment to install your Python packages with `$ python3 -m venv ./venv`
-  - _If you have Python3 set as your global version inside `pyenv` you probably can run `python` instead of `python3` at the beginning of that command.
-  - Activate the virtual environment: `$ source venv/bin/activate`
-  - Run `$ deactivate` to deactivate virtual environment.
+    - If you have Python3 set as your global version inside `pyenv` you probably can run `python` instead of `python3` at the beginning of that command.
+  - Activate the virtual environment: `$ source venv/bin/activate` (Run `$ deactivate` to deactivate the virtual environment when done working with the app)
 - Install Python packages: `$ pip install -r requirements.txt`
-- `$ python run.py` to run server on `localhost:5000`
-- Set up your local database
+- Set up local databases
   ```
   $ createdb hireup_dev``$ createdb hireup_test
-  $ export DATABASE_URL=postgresql://localhost:5432/hireup_dev
-  $ python manage.py db migrate
-  $ python manage.py db upgrade
-  $ export DATABASE_URL=postgresql://localhost:5432/hireup_test
-  $ python manage.py db migrate
-  $ python manage.py db upgrade
+  $ export DATABASE_URL=postgresql://localhost:5432/hireup_dev # creates your dev database
+  $ python manage.py db migrate # add explanation here
+  $ python manage.py db upgrade # runs migrations on your dev database
+  $ python manage.py db_seed # seed data in dev database
+  $ export DATABASE_URL=postgresql://localhost:5432/hireup_test # creates your test database
+  $ python manage.py db migrate # add explanation here
+  $ python manage.py db upgrade # runs migrations on your dev database
   ```
-
+  - `$ python run.py` to run server on `localhost:5000`
   _If you get errors concerning the `FLASK_APP` environment not being set, try `$ export FLASK_APP=manage.py`_
 
 <!-- do we still need this part? -->
