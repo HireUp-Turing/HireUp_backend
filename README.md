@@ -58,10 +58,10 @@ _add info about coverage_
 
 ### Applicants
 #### GET `/api/v1/applicants`
-**Request**: no request body required
+**Response**: Returns all applicants
 <details>
-  <summary>**Response**: Returns all applicants</summary>
-  
+  <summary>Example successful response body</summary>
+
   ```JSON
   {
       "success": true,
@@ -97,7 +97,7 @@ _add info about coverage_
               "id": 3,
               "username": "Striped Giraffe",
               "email": "greyson@hireup.com",
-              "bio": "zebra",
+              "bio": "You definitely want to hire me",
               "skills": [
                   "javascript",
                   "knex",
@@ -117,7 +117,7 @@ _add info about coverage_
               "id": 4,
               "username": "Spotted Lamp",
               "email": "erin@hireup.com",
-              "bio": "turquoise",
+              "bio": "I'm the employee of your dreams",
               "skills": [
                   "Postgres",
                   "express"
@@ -132,7 +132,7 @@ _add info about coverage_
               "id": 5,
               "username": "Bright Eel",
               "email": "amy@hireup.com",
-              "bio": "helmet",
+              "bio": "I live to code!",
               "skills": [
                   "express",
                   "flask"
@@ -146,6 +146,128 @@ _add info about coverage_
   }
   ```
 </details>
+
+#### GET `/api/v1/applicants/:applicant_id`
+**Response**:
+<details>
+  <summary>Example successful response body </summary>
+
+  ```JSON
+  {
+      "success": true,
+      "data": {
+          "id": 1,
+          "username": "Fancy Chipmunk",
+          "email": "greyson@hireup.com",
+          "bio": "I'm the best one you could possibly hire",
+          "skills": [
+              "rails",
+              "ruby"
+          ],
+          "values": [
+              "creativity"
+          ]
+      }
+  }
+  ```
+</details>
+
+#### POST `/api/v1/applicants/`
+**Request**: Email, skills, and values are required fields
+<details>
+  <summary>Example successful request body</summary>
+
+  ```JSON
+  {
+      "first_name": "Greyson",
+      "last_name": "Johns",
+      "bio": "I'm the best one you could possibly hire",
+      "email": "greyson@google.com",
+      "username": "Chipmunk",
+      "skills": [2, 3],
+      "values": [2]
+  }
+  ```
+</details>
+**Response**: Creates new user and returns attributes including the new user's id
+<details>
+  <summary>Example successful response body</summary>
+
+  ```JSON
+  {
+      "success": true,
+      "data": {
+          "id": 6,
+          "username": "Chipmunk",
+          "email": "greyson@google.com",
+          "bio": "I'm the best one you could possibly hire",
+          "skills": [
+              "flask",
+              "ruby"
+          ],
+          "values": [
+              "mentorship"
+          ],
+          "success": true
+      }
+  }
+  ```
+</details>
+
+**Error handling**: New applicant cannot come in with empty arrays for either skills or values when being created, else response is 400 error message:
+<details>
+  <summary>Example erroneous request body</summary>
+
+  ```JSON
+  {
+      "first_name": "Greyson",
+      "last_name": "Johns",
+      "bio": "I'm the best one you could possibly hire",
+      "email": "greyson@google.com",
+      "username": "Chipmunk",
+      "skills": [2, 3]
+  }
+  ```
+</details>
+
+<details>
+  <summary>Example erroneous response body</summary>
+
+  ```JSON
+  {
+      "success": false,
+      "error": 400,
+      "errors": [
+          "required 'values' parameter is missing"
+      ]
+  }
+  ```
+</details>
+
+#### PATCH  `/api/v1/applicants/:applicant_id`
+**Request**:
+_This needs to be updated, as skills/values will probably need to come in as an array of id's, same as with the search function_
+
+```
+{
+  "first_name": "Now I'm John",
+  "last_name": "Smith",
+  "bio": "Call me that from now on",
+  "email": "jjj@comcast.com"
+  "username": "Tameen"
+  "skills": ["bird-watching", "singing operatic sonatas poorly"],
+  "values": ["silliness", "charisma"]
+}
+```
+#### Response
+No specific response beyond `success`
+
+
+
+
+
+
+
 
 #### GET `/api/v1/applicants/search-options`
 #### Response
@@ -211,71 +333,7 @@ Returns any user that contains any of the attributes selected in the search
   }]
 }
 ```
-#### GET `/api/v1/applicants/:applicant_id`
-#### Response
-```
-  data: {
-    "id": $id,
-    "email": "google@google.com",
-    "username": "Chipmunk",
-    "first_name": "Greyson",
-    "last_name": "Johns",
-    "bio": "I'm the best one you could possibly hire",
-​    "skills": ["javascript", "react"],
-​    "values": ["writing", "teamwork"]
-  }
-```
 
-#### POST `/api/v1/applicants/`
-#### Request
-Email, skills, and values are **required fields**
-
-```
-{
-    "first_name": "Greyson",
-    "last_name": "Johns",
-    "bio": "I'm the best one you could possibly hire",
-    "email": "google@google.com",
-    "username": "Chipmunk",
-​    "skills": [1, 2],
-​    "values": [2]
-  }
-
-```
-_New applicant cannot come in with empty arrays for either skills or values when being created, else response is 400 error message:_
-```
-{
-    "success": false,
-    "error": 400,
-    "errors": [
-        "required 'values' parameter is blank"
-    ]
-}
-```
-#### Response
-Returns the new users id
-```
-data: {
-  id: $id
-}
-```
-#### PATCH  `/api/v1/applicants/:applicant_id`
-#### Request
-_This needs to be updated, as skills/values will probably need to come in as an array of id's, same as with the search function_
-
-```
-{
-  "first_name": "Now I'm John",
-  "last_name": "Smith",
-  "bio": "Call me that from now on",
-  "email": "jjj@comcast.com"
-  "username": "Tameen"
-  "skills": ["bird-watching", "singing operatic sonatas poorly"],
-  "values": ["silliness", "charisma"]
-}
-```
-#### Response
-No specific response beyond `success`
 
 ### Messages
 #### GET `/api/v1/messages?applicant_id=<applicant_id>`
