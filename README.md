@@ -59,9 +59,6 @@ _add info about coverage_
 ### Applicants
 #### GET `/api/v1/applicants`
 **Response**: Returns all applicants
-<details>
-  <summary>Example successful response body</summary>
-
   ```JSON
   {
       "success": true,
@@ -92,66 +89,13 @@ _add info about coverage_
                   "creativity",
                   "mentorship"
               ]
-          },
-          {
-              "id": 3,
-              "username": "Striped Giraffe",
-              "email": "greyson@hireup.com",
-              "bio": "You definitely want to hire me",
-              "skills": [
-                  "javascript",
-                  "knex",
-                  "teamwork",
-                  "active listening",
-                  "flask"
-              ],
-              "values": [
-                  "mentorship",
-                  "continuous feedback",
-                  "impressive team members",
-                  "open communication",
-                  "wears many hats"
-              ]
-          },
-          {
-              "id": 4,
-              "username": "Spotted Lamp",
-              "email": "erin@hireup.com",
-              "bio": "I'm the employee of your dreams",
-              "skills": [
-                  "Postgres",
-                  "express"
-              ],
-              "values": [
-                  "wears many hats",
-                  "open communication",
-                  "creativity"
-              ]
-          },
-          {
-              "id": 5,
-              "username": "Bright Eel",
-              "email": "amy@hireup.com",
-              "bio": "I live to code!",
-              "skills": [
-                  "express",
-                  "flask"
-              ],
-              "values": [
-                  "mentorship",
-                  "heavily team oriented"
-              ]
           }
       ]
   }
   ```
-</details>
 
 #### GET `/api/v1/applicants/:applicant_id`
 **Response**:
-<details>
-  <summary>Example successful response body </summary>
-
   ```JSON
   {
       "success": true,
@@ -170,13 +114,9 @@ _add info about coverage_
       }
   }
   ```
-</details>
 
 #### POST `/api/v1/applicants/`
 **Request**: Email, skills, and values are required fields
-<details>
-  <summary>Example successful request body</summary>
-
   ```JSON
   {
       "first_name": "Greyson",
@@ -188,11 +128,9 @@ _add info about coverage_
       "values": [2]
   }
   ```
-</details>
-**Response**: Creates new user and returns attributes including the new user's id
-<details>
-  <summary>Example successful response body</summary>
 
+**Response**:
+Creates new user and returns attributes including the new user's id
   ```JSON
   {
       "success": true,
@@ -212,12 +150,8 @@ _add info about coverage_
       }
   }
   ```
-</details>
-
 **Error handling**: New applicant cannot come in with empty arrays for either skills or values when being created, else response is 400 error message:
-<details>
-  <summary>Example erroneous request body</summary>
-
+Erroneous request body:
   ```JSON
   {
       "first_name": "Greyson",
@@ -227,12 +161,9 @@ _add info about coverage_
       "username": "Chipmunk",
       "skills": [2, 3]
   }
+  # missing "values" array
   ```
-</details>
-
-<details>
-  <summary>Example erroneous response body</summary>
-
+Error message response:
   ```JSON
   {
       "success": false,
@@ -242,9 +173,9 @@ _add info about coverage_
       ]
   }
   ```
-</details>
 
-#### PATCH  `/api/v1/applicants/:applicant_id`
+<!-- commenting this out until we have this request body figured out -->
+<!-- #### PATCH  `/api/v1/applicants/:applicant_id`
 **Request**:
 _This needs to be updated, as skills/values will probably need to come in as an array of id's, same as with the search function_
 
@@ -260,13 +191,7 @@ _This needs to be updated, as skills/values will probably need to come in as an 
 }
 ```
 #### Response
-No specific response beyond `success`
-
-
-
-
-
-
+No specific response beyond `success` -->
 
 
 #### GET `/api/v1/applicants/search-options`
