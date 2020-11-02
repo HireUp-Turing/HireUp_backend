@@ -58,7 +58,7 @@ _add info about coverage_
 
 ### Applicants
 #### GET `/api/v1/applicants`
-**Response**: Returns all applicants
+###### Response: Returns all applicants
   ```JSON
   {
       "success": true,
@@ -95,7 +95,7 @@ _add info about coverage_
   ```
 
 #### GET `/api/v1/applicants/:applicant_id`
-**Response**:
+###### Response:
   ```JSON
   {
       "success": true,
@@ -116,7 +116,7 @@ _add info about coverage_
   ```
 
 #### POST `/api/v1/applicants/`
-**Request**: Email, skills, and values are required fields
+###### Request: Email, skills, and values are required fields
   ```JSON
   {
       "first_name": "Greyson",
@@ -129,8 +129,7 @@ _add info about coverage_
   }
   ```
 
-**Response**:
-Creates new applicant and returns attributes including the new user's id
+###### Response: Creates new applicant and returns attributes including the new user's id
   ```JSON
   {
       "success": true,
@@ -150,7 +149,8 @@ Creates new applicant and returns attributes including the new user's id
       }
   }
   ```
-**Error handling**: New applicant cannot come in with empty arrays for either skills or values when being created, else response is 400 error message  
+
+###### Error handling: New applicant cannot come in with empty arrays for either skills or values when being created, else response is 400 error message  
 Example erroneous request:
   ```JSON
   {
@@ -194,7 +194,7 @@ _This needs to be updated, as skills/values will probably need to come in as an 
 No specific response beyond `success` -->
 
 #### GET `/api/v1/applicants/search-options`
-###### Response: Returns alphabetically ordered skills and values that are actively associated with applicant records. Used to populate search filter options for employers to browse applicant profiles.
+###### Response: Returns alphabetically ordered skills and values that are actively associated with applicant records. This endpoint is used on the front-end in in order to populate search filter options for employers to browse applicant profiles.
 ```
 {
     "success": true,
@@ -230,34 +230,62 @@ No specific response beyond `success` -->
 ```
 
 #### GET `/api/v1/applicants/search`
-#### Request Body
-One of these arrays can be empty, but not both
+###### Request Body: Attribute arrays contain ids associated with the selected skills and values attributes on the front-end search page. One of the arrays can be empty, but not both.
 ```
 {
   "skills": [2, 4]
   "values": [3]
 }
 ```
-#### Response
-Returns any user that contains any of the attributes selected in the search
+###### Response: Returns all applicants that partially match the attributes specified by the request
 ```
 {
-  data: [{
-​    "id": "1",
-​    "username": "Chipmunk",
-    "bio": "I'm the best one you could possibly hire",
-​    "skills": ["javascript", "react"],
-​    "values": ["writing", "teamwork"]
-  }, {
-​    "id": "2",
-​    "username": "time-traveler",
-    "bio": "I'm the best one you could possibly hire",
-​    "skills": ["javascript", "react"],
-​    "values": ["paired programming", "magic"]
-  }]
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "username": "Chipmunk",
+            "email": "gaby@hireup.com",
+            "bio": "Noodle's mom!",
+            "skills": [
+                {
+                    "attribute": "rails"
+                },
+                {
+                    "attribute": "ruby"
+                }
+            ],
+            "values": [
+                {
+                    "attribute": "creativity"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "username": "Anonymous Giraffe",
+            "email": "ruthie@hireup.com",
+            "bio": "Noodle's mom's accountabilabuddy!",
+            "skills": [
+                {
+                    "attribute": "rails"
+                },
+                {
+                    "attribute": "flask"
+                }
+            ],
+            "values": [
+                {
+                    "attribute": "creativity"
+                },
+                {
+                    "attribute": "mentorship"
+                }
+            ]
+        }
+    ]
 }
 ```
-
 
 ### Messages
 #### GET `/api/v1/messages?applicant_id=<applicant_id>`
