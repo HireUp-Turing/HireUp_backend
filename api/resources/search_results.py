@@ -11,14 +11,21 @@ from api.database.models import Applicant, Skill, Value
 
 # HELPER METHODS
 def _applicant_payload(applicant):
+    skills = []
+    for skill in applicant.skills:
+        skills.append({'attribute': skill.name})
+
+    values = []
+    for value in applicant.values:
+        values.append({'attribute': value.name})
 
     return {
         'id': applicant.id,
         'username': applicant.username,
         'email': applicant.email,
         'bio': applicant.bio,
-        'skills': [skill.name for skill in applicant.skills],
-        'values': [value.name for value in applicant.values],
+        'skills': skills,
+        'values': values,
     }
 
 def _filter_applicants(skill_ids, value_ids):
