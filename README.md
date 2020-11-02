@@ -1,11 +1,19 @@
-## HireUp - Backend API in Flask
+# HireUp - Backend API in Flask
 [![Build Status](https://travis-ci.org/HireUp-Turing/HireUp_backend.svg?branch=main)](https://travis-ci.org/HireUp-Turing/HireUp_backend)
 
 ![HireUp gif](https://camo.githubusercontent.com/cf285267b017ce5b84275172ecafc2e72f812035/687474703a2f2f672e7265636f726469742e636f2f6259456f4b43534767652e676966)
 
-### Set Up Flask App
+## HireUp Back-End Service
 
-- Install Python3 and Pip3 using `pyenv`, a version manager. These [instructions](https://opensource.com/article/19/5/python-3-default-mac#what-to-do) were helpful.
+### Jump To
+- [About](#about)
+- [Setup](#setup)
+
+### About
+HireUp aims to minimize bias in the hiring process, and reduce efforts required of job applicants to produce application materials and of employers to read through piles of those materials. This API is consumed by the the [HireUp front-end application](https://github.com/HireUp-Turing/HireUp_frontend).
+
+### Setup
+- If you do not yet have `pyenv`, Python3, or Pip3 installed, follow [these](https://opensource.com/article/19/5/python-3-default-mac#what-to-do) instructions.
 - Clone repo: `git clone git@github.com:HireUp-Turing/HireUp_backend.git`
 - Virtual Environment Setup:
   - Build and activate a virtual environment to install your Python packages with `$ python3 -m venv ./venv`
@@ -14,19 +22,21 @@
   - Run `$ deactivate` to deactivate virtual environment.
 - Install Python packages: `$ pip install -r requirements.txt`
 - `$ python run.py` to run server on `localhost:5000`
+- Set up your local database
+  ```
+  $ createdb hireup_dev``$ createdb hireup_test
+  $ export DATABASE_URL=postgresql://localhost:5432/hireup_dev
+  $ python manage.py db migrate
+  $ python manage.py db upgrade
+  $ export DATABASE_URL=postgresql://localhost:5432/hireup_test
+  $ python manage.py db migrate
+  $ python manage.py db upgrade
+  ```
 
-**Database Setup**
-- `$ createdb hireup_dev` & `$ createdb hireup_test`
-- `$ export DATABASE_URL=postgresql://localhost:5432/hireup_dev`
-- `$ python manage.py db migrate`
-- `$ python manage.py db upgrade`
-- `$ export DATABASE_URL=postgresql://localhost:5432/hireup_test`
-- `$ python manage.py db migrate`
-- `$ python manage.py db upgrade`
+  _If you get errors concerning the `FLASK_APP` environment not being set, try `$ export FLASK_APP=manage.py`_
 
-_If you get errors concerning the `FLASK_APP` environment not being set, try `$ export FLASK_APP=manage.py`_
-
-_These instructions will be modified once an `.env` file is added to this repo._
+<!-- do we still need this part? -->
+<!-- _These instructions will be modified once an `.env` file is added to this repo._ -->
 
 ### CLI commands
 - `$ python manage.py routes` returns available routes
