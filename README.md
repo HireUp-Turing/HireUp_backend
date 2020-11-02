@@ -112,24 +112,66 @@ One of these arrays can be empty, but not both
 }
 ```
 #### Response
-Returns any user that contains any of the attributes selected in the search
-```
+Returns any users with partial matches of the selected search attributes
+```json
 {
-  data: [{
-​    "id": "1",
-​    "username": "Chipmunk",
-    "bio": "I'm the best one you could possibly hire",
-​    "skills": ["javascript", "react"],
-​    "values": ["writing", "teamwork"]
-  }, {
-​    "id": "2",
-​    "username": "time-traveler",
-    "bio": "I'm the best one you could possibly hire",
-​    "skills": ["javascript", "react"],
-​    "values": ["paired programming", "magic"]
-  }]
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "username": "Chipmunk",
+            "email": "gaby@hireup.com",
+            "bio": "Noodle's mom!",
+            "skills": [
+                {
+                    "attribute": "rails"
+                },
+                {
+                    "attribute": "ruby"
+                }
+            ],
+            "values": [
+                {
+                    "attribute": "creativity"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "username": "Anonymous Giraffe",
+            "email": "ruthie@hireup.com",
+            "bio": "Noodle's mom's accountabilabuddy!",
+            "skills": [
+                {
+                    "attribute": "rails"
+                },
+                {
+                    "attribute": "flask"
+                }
+            ],
+            "values": [
+                {
+                    "attribute": "creativity"
+                },
+                {
+                    "attribute": "mentorship"
+                }
+            ]
+        }
+    ]
 }
 ```
+
+A request body that does not specify any skills or values to search for will return an error message:
+```json
+{
+  "success": false,
+  "error": 400,
+  "errors": "At least one skill or value id must be specified in order to filter applicant search results."
+}
+```
+
+
 #### GET `/api/v1/applicants/:applicant_id`
 #### Response
 ```
