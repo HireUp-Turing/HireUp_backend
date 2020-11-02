@@ -55,6 +55,7 @@ _add info about coverage_
 ![image](https://user-images.githubusercontent.com/62635544/97842714-49e72a00-1ca5-11eb-8787-f188eb7d8ed3.png)
 
 ## Endpoint Documentation
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/e5f0567156412937dafe)
 
 ### Applicants
 #### GET `/api/v1/applicants`
