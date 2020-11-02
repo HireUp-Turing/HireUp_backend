@@ -1,5 +1,7 @@
-## HireUp - Backend API in Flask 
+## HireUp - Backend API in Flask
 [![Build Status](https://travis-ci.org/HireUp-Turing/HireUp_backend.svg?branch=main)](https://travis-ci.org/HireUp-Turing/HireUp_backend)
+
+![HireUp gif](https://camo.githubusercontent.com/cf285267b017ce5b84275172ecafc2e72f812035/687474703a2f2f672e7265636f726469742e636f2f6259456f4b43534767652e676966)
 
 ### Set Up Flask App
 
