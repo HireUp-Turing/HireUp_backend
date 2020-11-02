@@ -12,6 +12,11 @@
 - [Testing](#testing)
 - [Database Schema](#database-schema)
 - [Endpoint Documentation](#endpoint-documentation)
+  - [Applicants](#applicants)
+  - [Searching](#searching)
+  - [Messages](#messages)
+  - [Skills](#skills)
+  - [Values](#values)
 
 ## About
 HireUp aims to minimize bias in the hiring process, and reduce efforts required of job applicants to produce application materials and of employers to read through piles of those materials. This API is consumed by the the [HireUp front-end application](https://github.com/HireUp-Turing/HireUp_frontend).
@@ -55,7 +60,8 @@ _add info about coverage_
 ![image](https://user-images.githubusercontent.com/62635544/97842714-49e72a00-1ca5-11eb-8787-f188eb7d8ed3.png)
 
 ## Endpoint Documentation
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/e5f0567156412937dafe)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/e5f0567156412937dafe)  
+###### Base URL: Use [localhost:5000](localhost:5000) to explore endpoints with local server and [https://hireup-be.herokuapp.com/](https://hireup-be.herokuapp.com/) to explore the endpoints via the live Heroku app
 
 ### Applicants
 #### GET `/api/v1/applicants`
