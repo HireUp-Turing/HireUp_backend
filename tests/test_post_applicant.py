@@ -44,3 +44,30 @@ class PostApplicantTest(unittest.TestCase):
 
         self.assertEqual(1, data['data']['id'])
         self.assertEqual(['skill'], data['data']['skills'])
+
+    def test_sadpath_create_new_applicant(self):
+        skill = Skill(name='skill')
+        db.session.add(skill)
+        value = Value(name='value')
+        db.session.add(value)
+
+        new_data = {
+            'username': 'giraffes',
+            'bio': 'this is a test bio',
+            'first_name': 'gaby',
+            'last_name': 'mendez',
+            'skills': [1],
+            'values': [1]
+        }
+
+        response = self.client.post(
+            '/api/v1/applicants', json=new_data,
+            content_type='application/json'
+        )
+        import pdb; pdb.set_trace()
+        self.assertEqual(201, response.status_code)
+
+        data = json.loads(response.data.decode('utf-8'))
+
+        self.assertEqual(1, data['data']['id'])
+        self.assertEqual(['skill'], data['data']['skills'])
