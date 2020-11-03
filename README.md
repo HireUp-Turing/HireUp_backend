@@ -49,16 +49,18 @@ HireUp aims to minimize bias in the hiring process, and reduce efforts required 
   ```
 - `$ python run.py` to run server on `localhost:5000` (_If you get errors concerning the `FLASK_APP` environment not being set, try `$ export FLASK_APP=manage.py`_)
 
-<!-- _These instructions will be modified once an `.env` file is added to this repo._ -->
-
 ## CLI commands
 - `$ python manage.py routes` returns available routes
 - _Coming soon... database migrate/seeding commands._
 
 ## Testing
-_more details to come_
-_add info about coverage_
-- Run tests: `python -m pytest -v`
+- Run tests without coverage: `$ python -m pytest -v`
+- Run tests with coverage report: `$ pytest --cov tests api`
+  - See browser-based coverage report
+    ```
+    $ coverage html
+    $ open coverage_html_report/index.html
+    ```
 
 ## Database Schema
 ![image](https://user-images.githubusercontent.com/62635544/97842714-49e72a00-1ca5-11eb-8787-f188eb7d8ed3.png)
