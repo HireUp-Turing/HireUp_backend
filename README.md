@@ -1,4 +1,4 @@
-## HireUp - Backend API in Flask 
+## HireUp - Backend API in Flask
 [![Build Status](https://travis-ci.org/HireUp-Turing/HireUp_backend.svg?branch=main)](https://travis-ci.org/HireUp-Turing/HireUp_backend)
 
 ### Set Up Flask App
@@ -32,7 +32,13 @@ _These instructions will be modified once an `.env` file is added to this repo._
 
 ### Running tests
 _more details to come_
-- `python -m pytest -v`
+- Run tests without coverage report: `$ python -m pytest -v`
+- Run tests with coverage report: `$ pytest --cov tests api`
+  - See browser-based coverage report
+    ```
+    $ coverage html
+    $ open coverage_html_report/index.html
+    ```
 
 ### Database Schema
 ![image](https://user-images.githubusercontent.com/62635544/96819356-a6626380-13e0-11eb-8398-eef92ca100f3.png)
