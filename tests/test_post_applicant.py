@@ -64,10 +64,9 @@ class PostApplicantTest(unittest.TestCase):
             '/api/v1/applicants', json=new_data,
             content_type='application/json'
         )
-        import pdb; pdb.set_trace()
-        self.assertEqual(201, response.status_code)
+        self.assertEqual(400, response.status_code)
 
         data = json.loads(response.data.decode('utf-8'))
 
-        self.assertEqual(1, data['data']['id'])
-        self.assertEqual(['skill'], data['data']['skills'])
+        self.assertIn('errors', data)
+        self.assertEqual(['required \'email\' parameter is missing'], data['errors'])
