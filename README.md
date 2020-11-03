@@ -31,8 +31,7 @@ _These instructions will be modified once an `.env` file is added to this repo._
 - _Coming soon... database migrate/seeding commands._
 
 ### Running tests
-_more details to come_
-- Run tests without coverage report: `$ python -m pytest -v`
+- Run tests without coverage report: `$ python -m pytest -v` or `$ python manage.py test`
 - Run tests with coverage report: `$ pytest --cov tests api`
   - See browser-based coverage report
     ```
