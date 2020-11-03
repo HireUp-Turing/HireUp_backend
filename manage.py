@@ -1,3 +1,6 @@
+import unittest
+import coverage
+
 # File to configure Manager from flask-script, which is like Rake tasks for Flask
 from flask_script import Manager
 # include the next line when dealing with migrations
@@ -314,6 +317,29 @@ def db_seed():
     # this is just a return value for confirmation.
     # counts objects seeded
     print(f'obj count: {len(db.session.query(Applicant).all())}')
+
+@manager.command
+def test():
+    """run tests without coverage"""
+    tests = unittest.TestLoader().discover('.')
+    unittest.TextTestRunner(verbosity=2).run(tests)
+
+@manager.command
+def cov():
+    """run unit tests with coverage"""
+    cov = coverage.coverage(branch=True, include='projects/*')
+    cov.start()
+    tests = unittest.TestLoader().discover('.')
+    unittest.TextTestRunner(verbosity=2).run(tests)
+    cov.stop()
+    cov.save()
+    print('Coverage Summary:')
+    cov.report()
+    basedir = os.path.abspath(os.path.dirname(__file__))
+    covdir = os.path.join(basedir, 'coverage')
+    cov.html_report(directory=covdir)
+    cov.erase()
+
 
 if __name__ == "__main__":
     manager.run()
