@@ -1,0 +1,20 @@
+[run]
+omit =
+    .pytest_cache
+    run.py
+    manage.py
+    venv/*
+    tests/*
+    
+[report]
+omit =
+    .pytest_cache
+    run.py
+    manage.py
+    venv/*
+    tests/*
+
+ignore_errors = True
+
+[html]
+directory = coverage_html_report
