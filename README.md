@@ -40,22 +40,22 @@ HireUp aims to minimize bias in the hiring process, and reduce efforts required 
   $ createdb hireup_dev # creates your dev database
   $ createdb hireup_test # creates your test database
   $ export DATABASE_URL=postgresql://localhost:5432/hireup_dev # connects you to your dev database in order to run the following commands
-  $ python manage.py db migrate # add explanation here
+  $ python manage.py db migrate # generates new migration files from any changes made to models.py
   $ python manage.py db upgrade # runs migrations on your dev database
   $ python manage.py db_seed # seed data in dev database
   $ export DATABASE_URL=postgresql://localhost:5432/hireup_test # connects you to your test database in order to run the following commands
-  $ python manage.py db migrate # add explanation here
-  $ python manage.py db upgrade # runs migrations on your dev database
+  $ python manage.py db upgrade # runs migrations on your test database
   ```
+- Run `$ export DATABASE_URL=postgresql://localhost:5432/hireup_dev` again to reset DATABASE_URL to the development database for any future work.
 - `$ python run.py` to run server on `localhost:5000` (_If you get errors concerning the `FLASK_APP` environment not being set, try `$ export FLASK_APP=manage.py`_)
 
 ## CLI commands
 - `$ python manage.py routes` returns available routes
-- _Coming soon... database migrate/seeding commands._
+- `$ python manage.py db_seed` drops all tables, creates all tables, and seeds whichever database is currently set to `DATABASE_URL` environment variable.
 
 ## Testing
-- Run tests without coverage: `$ python -m pytest -v`
-- Run tests with coverage report: `$ pytest --cov tests api`
+- Run tests without coverage: `$ pytest -v`
+- Run tests with coverage report: `$ pytest --cov`
   - See browser-based coverage report
     ```
     $ coverage html
