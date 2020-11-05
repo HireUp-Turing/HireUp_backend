@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/HireUp-Turing/HireUp_backend.svg?branch=main)](https://travis-ci.org/HireUp-Turing/HireUp_backend)
 
-![HireUp gif](https://github.com/HireUp-Turing/HireUp_frontend/blob/master/public/images/search.gif)
+![HireUp gif](https://user-images.githubusercontent.com/62635544/98192087-9a45ce00-1ed7-11eb-91de-940074d1a8d7.gif)
 
 ### Jump To
 - [About](#about)
@@ -23,8 +23,7 @@
 ## About
 HireUp aims to minimize bias in the hiring process, and reduce efforts required of job applicants to produce application materials and of employers to read through piles of those materials. Job seekers can create anonymous applicant profiles that highlight their skills and values, and employers can browse through those anonymous profiles and message applicants they believe would be a good fit for their open roles.
 
-This repo is the back-end service for HireUp and is consumed by our [front-end application](https://github.com/HireUp-Turing/HireUp_frontend).
-
+This repo is the back-end service for HireUp and is consumed by our front-end application. The front-end GitHub repo can be found [here](https://github.com/HireUp-Turing/HireUp_frontend) and the deployed site [here](https://hire-up-turing.herokuapp.com/).
 
 ## Contributors
 - Back-End Team:
