@@ -1,9 +1,8 @@
 # HireUp - Backend API in Flask
+
 [![Build Status](https://travis-ci.org/HireUp-Turing/HireUp_backend.svg?branch=main)](https://travis-ci.org/HireUp-Turing/HireUp_backend)
 
-![HireUp gif](https://camo.githubusercontent.com/cf285267b017ce5b84275172ecafc2e72f812035/687474703a2f2f672e7265636f726469742e636f2f6259456f4b43534767652e676966)
-
-## HireUp Back-End Service
+![HireUp gif](https://user-images.githubusercontent.com/62635544/98192087-9a45ce00-1ed7-11eb-91de-940074d1a8d7.gif)
 
 ### Jump To
 - [About](#about)
@@ -19,13 +18,21 @@
   - [Skills](#skills)
   - [Values](#values)
 - [Technologies](#technologies)
+- [Roadmap](#roadmap)
 
 ## About
-HireUp aims to minimize bias in the hiring process, and reduce efforts required of job applicants to produce application materials and of employers to read through piles of those materials. This API is consumed by the the [HireUp front-end application](https://github.com/HireUp-Turing/HireUp_frontend).
+HireUp aims to minimize bias in the hiring process, and reduce efforts required of job applicants to produce application materials and of employers to read through piles of those materials. Job seekers can create anonymous applicant profiles that highlight their skills and values, and employers can browse through those anonymous profiles and message applicants they believe would be a good fit for their open roles.
 
-## contributors
-- Ruthie Rabinovitch | [GitHub](https://github.com/rrabinovitch) | [LinkedIn](https://www.linkedin.com/in/ruthie-r/)
-- Gaby Méndez | [GitHub](https://github.com/gabichuelas) | [LinkedIn](https://www.linkedin.com/in/gabymendez/)
+This repo is the back-end service for HireUp and is consumed by our front-end application. The front-end GitHub repo can be found [here](https://github.com/HireUp-Turing/HireUp_frontend) and the deployed site [here](https://hire-up-turing.herokuapp.com/).
+
+## Contributors
+- Back-End Team:
+  - Ruthie Rabinovitch | [GitHub](https://github.com/rrabinovitch) | [LinkedIn](https://www.linkedin.com/in/ruthie-r/) | rrabinovitch1@gmail.com
+  - Gaby Méndez | [GitHub](https://github.com/gabichuelas) | [LinkedIn](https://www.linkedin.com/in/gabymendez/) | gmendez90@gmail.com
+- Front-End Team:
+  - Erin Untermeyer | [GitHub](https://github.com/ErinUntermeyer) | [LinkedIn](https://www.linkedin.com/in/erin-untermeyer/) | aerinuntermeyer@gmail.com
+  - Amy Karnaze | [GitHub](https://github.com/amykarnaze) | [LinkedIn](https://www.linkedin.com/in/amy-karnaze-ba94b917/) | Akarnaze@gmail.com
+  - Greyson Elkins | [GitHub](https://github.com/GreysonElkins) | [LinkedIn](https://github.com/GreysonElkins) | greysonelkins@gmail.com
 
 ## Setup
 - If you do not yet have `pyenv`, Python3, or Pip3 installed, follow [these](https://opensource.com/article/19/5/python-3-default-mac#what-to-do) instructions.
@@ -482,3 +489,6 @@ Error message response:
 - SQLAlchemy
 - Pytest
 - TravisCI
+
+## Roadmap
+Feel free to explore our list of [open issues](https://github.com/HireUp-Turing/HireUp_backend/issues) and our [project board](https://github.com/orgs/HireUp-Turing/projects/2) to learn about what our team has in mind for future iterations of HireUp
