@@ -1,7 +1,7 @@
 from flask_cors import CORS
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 # from werkzeug.exceptions import HTTPException
 from config import config
 
@@ -28,7 +28,7 @@ def create_app(config_name='default'):
     # test route
     @app.route('/')
     def root():
-        return 'Hello World!'
+        return render_template("root.html")
         # this is where we can eventually add documentation to display on the deployed site
 
     # Add resources
