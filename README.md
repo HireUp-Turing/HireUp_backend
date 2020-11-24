@@ -89,11 +89,20 @@ This repo is the back-end service for HireUp and is consumed by our front-end ap
 				"email": "gaby@hireup.com",
 				"bio": "Noodle's mom!",
 				"skills": [
-					"rails",
-					"ruby"
+					{
+						"attribute": "flask"
+					},
+					{
+						"attribute": "rails"
+					},
 				],
 				"values": [
-					"creativity"
+					{
+						"attribute": "creativity"
+					},
+					{
+						"attribute": "mentorship"
+					}
 				]
 			},
 			{
@@ -102,12 +111,20 @@ This repo is the back-end service for HireUp and is consumed by our front-end ap
 				"email": "ruthie@hireup.com",
 				"bio": "Noodle's mom's accountabilabuddy!",
 				"skills": [
-					"rails",
-					"flask"
+					{
+						"attribute": "flask"
+					},
+					{
+						"attribute": "rails"
+					},
 				],
 				"values": [
-					"creativity",
-					"mentorship"
+					{
+						"attribute": "creativity"
+					},
+					{
+						"attribute": "mentorship"
+					}
 				]
 			}
 		]
@@ -125,11 +142,20 @@ This repo is the back-end service for HireUp and is consumed by our front-end ap
 			"email": "greyson@hireup.com",
 			"bio": "I'm the best one you could possibly hire",
 			"skills": [
-				"rails",
-				"ruby"
+				{
+					"attribute": "flask"
+				},
+				{
+					"attribute": "rails"
+				},
 			],
 			"values": [
-				"creativity"
+				{
+					"attribute": "creativity"
+				},
+				{
+					"attribute": "mentorship"
+				}
 			]
 		}
   }
@@ -158,13 +184,21 @@ This repo is the back-end service for HireUp and is consumed by our front-end ap
 			"email": "greyson@google.com",
 			"bio": "I'm the best one you could possibly hire",
 			"skills": [
-				"flask",
-				"ruby"
+				{
+					"attribute": "flask"
+				},
+				{
+					"attribute": "rails"
+				},
 			],
 			"values": [
-				"mentorship"
+				{
+					"attribute": "creativity"
+				},
+				{
+					"attribute": "mentorship"
+				}
 			],
-			"success": true
 		}
   }
   ```
@@ -188,7 +222,7 @@ Error message response:
 		"success": false,
 		"error": 400,
 		"errors": [
-				"required 'values' parameter is missing"
+			"required 'values' parameter is missing"
 		]
   }
   ```
@@ -305,54 +339,6 @@ No specific response beyond `success` -->
 		}
 	]
 }
-
-```JSON
-{
-	"success": true,
-	"data": [
-		{
-			"id": 1,
-			"username": "Chipmunk",
-			"email": "gaby@hireup.com",
-			"bio": "Noodle's mom!",
-			"skills": [
-				{
-					"attribute": "rails"
-				},
-				{
-					"attribute": "ruby"
-				}
-			],
-			"values": [
-				{
-					"attribute": "creativity"
-				}
-			]
-	},
-	{
-			"id": 2,
-			"username": "Anonymous Giraffe",
-			"email": "ruthie@hireup.com",
-			"bio": "Noodle's mom's accountabilabuddy!",
-			"skills": [
-				{
-					"attribute": "rails"
-				},
-				{
-					"attribute": "flask"
-				}
-			],
-			"values": [
-				{
-					"attribute": "creativity"
-				},
-				{
-					"attribute": "mentorship"
-				}
-			]
-		}
-	]
-}
 ```
 ###### Error handling: A request body that does not specify any skills or values will produce a 400 error message  
 Example erroneous request:
@@ -382,22 +368,22 @@ Error message response:
 	"success": true,
 	"data": [
 		{
-				"id": 1,
-				"applicant_id": 2,
-				"employer_name": "Google",
-				"employer_email": "info@turing.com",
-				"body": "We know you'll rock our world as CEO of Google - please interview with us.",
-				"read_status": false,
-				"created_at": "2020-11-01 14:11:53.212912-07:00"
+			"id": 1,
+			"applicant_id": 2,
+			"employer_name": "Google",
+			"employer_email": "info@turing.com",
+			"body": "We know you'll rock our world as CEO of Google - please interview with us.",
+			"read_status": false,
+			"created_at": "2020-11-01 14:11:53.212912-07:00"
 		},
 		{
-				"id": 2,
-				"applicant_id": 2,
-				"employer_name": "Aerion Inc",
-				"employer_email": "aerioninc@email.com",
-				"body": "Come work for us. Pretty please.",
-				"read_status": true,
-				"created_at": "2020-11-01 14:11:53.212912-07:00"
+			"id": 2,
+			"applicant_id": 2,
+			"employer_name": "Aerion Inc",
+			"employer_email": "aerioninc@email.com",
+			"body": "Come work for us. Pretty please.",
+			"read_status": true,
+			"created_at": "2020-11-01 14:11:53.212912-07:00"
 		}
 	]
 }
