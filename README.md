@@ -440,19 +440,19 @@ Error message response:
 	"data": [
 		{
 			"id": 1,
-			"name": "rails"
+			"attribute": "rails"
 		},
 		{
 			"id": 2,
-			"name": "flask"
+			"attribute": "flask"
 		},
 		{
 			"id": 3,
-			"name": "ruby"
+			"attribute": "ruby"
 		},
 		{
 			"id": 4,
-			"name": "java"
+			"attribute": "java"
 		},
 		...
 	]
@@ -468,15 +468,15 @@ Error message response:
 	"data": [
 		{
 			"id": 1,
-			"name": "creativity"
+			"attribute": "creativity"
 		},
 		{
 			"id": 2,
-			"name": "mentorship"
+			"attribute": "mentorship"
 		},
 		{
 			"id": 3,
-			"name": "engages with community"
+			"attribute": "engages with community"
 		},
 		...
   ]
