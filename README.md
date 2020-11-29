@@ -81,36 +81,53 @@ This repo is the back-end service for HireUp and is consumed by our front-end ap
 ###### Response: Returns all applicants
   ```JSON
   {
-      "success": true,
-      "data": [
-          {
-              "id": 1,
-              "username": "Anonymous Giraffe",
-              "email": "gaby@hireup.com",
-              "bio": "Noodle's mom!",
-              "skills": [
-                  "rails",
-                  "ruby"
-              ],
-              "values": [
-                  "creativity"
-              ]
-          },
-          {
-              "id": 2,
-              "username": "Famous Hippo",
-              "email": "ruthie@hireup.com",
-              "bio": "Noodle's mom's accountabilabuddy!",
-              "skills": [
-                  "rails",
-                  "flask"
-              ],
-              "values": [
-                  "creativity",
-                  "mentorship"
-              ]
-          }
-      ]
+		"success": true,
+		"data": [
+			{
+				"id": 1,
+				"username": "Anonymous Giraffe",
+				"email": "gaby@hireup.com",
+				"bio": "Noodle's mom!",
+				"skills": [
+					{
+						"attribute": "flask"
+					},
+					{
+						"attribute": "rails"
+					},
+				],
+				"values": [
+					{
+						"attribute": "creativity"
+					},
+					{
+						"attribute": "mentorship"
+					}
+				]
+			},
+			{
+				"id": 2,
+				"username": "Famous Hippo",
+				"email": "ruthie@hireup.com",
+				"bio": "Noodle's mom's accountabilabuddy!",
+				"skills": [
+					{
+						"attribute": "flask"
+					},
+					{
+						"attribute": "rails"
+					},
+				],
+				"values": [
+					{
+						"attribute": "creativity"
+					},
+					{
+						"attribute": "mentorship"
+					}
+				]
+			}
+		]
   }
   ```
 
@@ -118,20 +135,29 @@ This repo is the back-end service for HireUp and is consumed by our front-end ap
 ###### Response: Does not include any identifying information about the applicant
   ```JSON
   {
-      "success": true,
-      "data": {
-          "id": 1,
-          "username": "Fancy Chipmunk",
-          "email": "greyson@hireup.com",
-          "bio": "I'm the best one you could possibly hire",
-          "skills": [
-              "rails",
-              "ruby"
-          ],
-          "values": [
-              "creativity"
-          ]
-      }
+		"success": true,
+		"data": {
+			"id": 1,
+			"username": "Fancy Chipmunk",
+			"email": "greyson@hireup.com",
+			"bio": "I'm the best one you could possibly hire",
+			"skills": [
+				{
+					"attribute": "flask"
+				},
+				{
+					"attribute": "rails"
+				},
+			],
+			"values": [
+				{
+					"attribute": "creativity"
+				},
+				{
+					"attribute": "mentorship"
+				}
+			]
+		}
   }
   ```
 
@@ -139,33 +165,41 @@ This repo is the back-end service for HireUp and is consumed by our front-end ap
 ###### Request: Email, skills, and values are required fields
   ```JSON
   {
-      "first_name": "Greyson",
-      "last_name": "Johns",
-      "bio": "I'm the best one you could possibly hire",
-      "username": "Chipmunk",
-      "skills": [2, 3],
-      "values": [2]
+		"first_name": "Greyson",
+		"last_name": "Johns",
+		"bio": "I'm the best one you could possibly hire",
+		"username": "Chipmunk",
+		"skills": [2, 3],
+		"values": [2]
   }
   ```
 
 ###### Response: Creates new applicant and returns attributes including the new user's id
   ```JSON
   {
-      "success": true,
-      "data": {
-          "id": 6,
-          "username": "Chipmunk",
-          "email": "greyson@google.com",
-          "bio": "I'm the best one you could possibly hire",
-          "skills": [
-              "flask",
-              "ruby"
-          ],
-          "values": [
-              "mentorship"
-          ],
-          "success": true
-      }
+		"success": true,
+		"data": {
+			"id": 6,
+			"username": "Chipmunk",
+			"email": "greyson@google.com",
+			"bio": "I'm the best one you could possibly hire",
+			"skills": [
+				{
+					"attribute": "flask"
+				},
+				{
+					"attribute": "rails"
+				},
+			],
+			"values": [
+				{
+					"attribute": "creativity"
+				},
+				{
+					"attribute": "mentorship"
+				}
+			],
+		}
   }
   ```
 
@@ -173,23 +207,23 @@ This repo is the back-end service for HireUp and is consumed by our front-end ap
 Example erroneous request:
   ```JSON
   {
-      "first_name": "Greyson",
-      "last_name": "Johns",
-      "bio": "I'm the best one you could possibly hire",
-      "email": "greyson@google.com",
-      "username": "Chipmunk",
-      "skills": [2, 3]
+		"first_name": "Greyson",
+		"last_name": "Johns",
+		"bio": "I'm the best one you could possibly hire",
+		"email": "greyson@google.com",
+		"username": "Chipmunk",
+		"skills": [2, 3]
   }
   # missing "values" array
   ```
 Error message response:
   ```JSON
   {
-      "success": false,
-      "error": 400,
-      "errors": [
-          "required 'values' parameter is missing"
-      ]
+		"success": false,
+		"error": 400,
+		"errors": [
+			"required 'values' parameter is missing"
+		]
   }
   ```
 
@@ -215,159 +249,112 @@ No specific response beyond `success` -->
 ### Searching
 #### GET `/api/v1/applicants/search-options`
 ###### Response: Returns alphabetically ordered skills and values that are actively associated with applicant records. This endpoint is used on the front-end in in order to populate search filter options for employers to browse applicant profiles.
-```
+```JSON
 {
-    "success": true,
-    "data": [
-        {
-            "skills": [
-                {
-                    "id": 2,
-                    "attribute": "flask"
-                },
-                {
-                    "id": 1,
-                    "attribute": "rails"
-                },
-                {
-                    "id": 3,
-                    "attribute": "ruby"
-                }
-            ],
-            "values": [
-                {
-                    "id": 1,
-                    "attribute": "creativity"
-                },
-                {
-                    "id": 2,
-                    "attribute": "mentorship"
-                }
-            ]
-        }
-    ]
+	"success": true,
+	"data": [
+		{
+			"skills": [
+				{
+					"id": 2,
+					"attribute": "flask"
+				},
+				{
+					"id": 1,
+					"attribute": "rails"
+				},
+				{
+					"id": 3,
+					"attribute": "ruby"
+				}
+			],
+			"values": [
+				{
+					"id": 1,
+					"attribute": "creativity"
+				},
+				{
+					"id": 2,
+					"attribute": "mentorship"
+				}
+			]
+		}
+	]
 }
 ```
 
 #### POST `/api/v1/applicants/search`
 ###### Request Body: Attribute arrays contain ids associated with the selected skills and values attributes on the front-end search page. One of the arrays can be empty, but not both.
-```
+```JSON
 {
-  "skills": [2, 4]
+  "skills": [2, 4],
   "values": [3]
 }
 ```
 ###### Response: Returns all applicants that partially match the attributes specified by the request
-```json
+```JSON
 {
-    "success": true,
-    "data": [
-        {
-            "id": 1,
-            "username": "Chipmunk",
-            "email": "gaby@hireup.com",
-            "bio": "Noodle's mom!",
-            "skills": [
-                {
-                    "attribute": "rails"
-                },
-                {
-                    "attribute": "ruby"
-                }
-            ],
-            "values": [
-                {
-                    "attribute": "creativity"
-                }
-            ]
-        },
-        {
-            "id": 2,
-            "username": "Anonymous Giraffe",
-            "email": "ruthie@hireup.com",
-            "bio": "Noodle's mom's accountabilabuddy!",
-            "skills": [
-                {
-                    "attribute": "rails"
-                },
-                {
-                    "attribute": "flask"
-                }
-            ],
-            "values": [
-                {
-                    "attribute": "creativity"
-                },
-                {
-                    "attribute": "mentorship"
-                }
-            ]
-        }
-    ]
-}
-
-```json
-{
-    "success": true,
-    "data": [
-        {
-            "id": 1,
-            "username": "Chipmunk",
-            "email": "gaby@hireup.com",
-            "bio": "Noodle's mom!",
-            "skills": [
-                {
-                    "attribute": "rails"
-                },
-                {
-                    "attribute": "ruby"
-                }
-            ],
-            "values": [
-                {
-                    "attribute": "creativity"
-                }
-            ]
-        },
-        {
-            "id": 2,
-            "username": "Anonymous Giraffe",
-            "email": "ruthie@hireup.com",
-            "bio": "Noodle's mom's accountabilabuddy!",
-            "skills": [
-                {
-                    "attribute": "rails"
-                },
-                {
-                    "attribute": "flask"
-                }
-            ],
-            "values": [
-                {
-                    "attribute": "creativity"
-                },
-                {
-                    "attribute": "mentorship"
-                }
-            ]
-        }
-    ]
+	"success": true,
+	"data": [
+		{
+			"id": 1,
+			"username": "Chipmunk",
+			"email": "gaby@hireup.com",
+			"bio": "Noodle's mom!",
+			"skills": [
+				{
+					"attribute": "rails"
+				},
+				{
+					"attribute": "ruby"
+				}
+			],
+			"values": [
+				{
+					"attribute": "creativity"
+				}
+			]
+		},
+		{
+			"id": 2,
+			"username": "Anonymous Giraffe",
+			"email": "ruthie@hireup.com",
+			"bio": "Noodle's mom's accountabilabuddy!",
+			"skills": [
+				{
+					"attribute": "rails"
+				},
+				{
+					"attribute": "flask"
+				}
+			],
+			"values": [
+				{
+					"attribute": "creativity"
+				},
+				{
+					"attribute": "mentorship"
+				}
+			]
+		}
+	]
 }
 ```
 ###### Error handling: A request body that does not specify any skills or values will produce a 400 error message  
 Example erroneous request:
-  ```JSON
-  {"skills": [],
-  "values": []
-      }
-  # missing skills and values ids
-  ```
+```JSON
+{
+	"skills": [],
+	"values": []
+}
+# missing skills and values ids
+```
 Error message response:
-  ```JSON
-  {
-  "success": false,
-  "error": 400,
-  "errors": "At least one skill or value id must be specified in order to filter applicant search results."
+```JSON
+{
+	"success": false,
+	"error": 400,
+	"errors": "At least one skill or value id must be specified in order to filter applicant search results."
 }
 ```
 
@@ -376,56 +363,56 @@ Error message response:
 ###### Request: Use query params to specify the id of the applicant whose messages need to be retrieved
 
 ###### Response: Returns messages associated with the specified user id
-```
+```JSON
 {
-    "success": true,
-    "data": [
-        {
-            "id": 1,
-            "applicant_id": 2,
-            "employer_name": "Google",
-            "employer_email": "info@turing.com",
-            "body": "We know you'll rock our world as CEO of Google - please interview with us.",
-            "read_status": false,
-            "created_at": "2020-11-01 14:11:53.212912-07:00"
-        },
-        {
-            "id": 2,
-            "applicant_id": 2,
-            "employer_name": "Aerion Inc",
-            "employer_email": "aerioninc@email.com",
-            "body": "Come work for us. Pretty please.",
-            "read_status": true,
-            "created_at": "2020-11-01 14:11:53.212912-07:00"
-        }
-    ]
+	"success": true,
+	"data": [
+		{
+			"id": 1,
+			"applicant_id": 2,
+			"employer_name": "Google",
+			"employer_email": "info@turing.com",
+			"body": "We know you'll rock our world as CEO of Google - please interview with us.",
+			"read_status": false,
+			"created_at": "2020-11-01 14:11:53.212912-07:00"
+		},
+		{
+			"id": 2,
+			"applicant_id": 2,
+			"employer_name": "Aerion Inc",
+			"employer_email": "aerioninc@email.com",
+			"body": "Come work for us. Pretty please.",
+			"read_status": true,
+			"created_at": "2020-11-01 14:11:53.212912-07:00"
+		}
+	]
 }
 ```
 #### POST `/api/v1/messages`
 ###### Request: Body should specify `applicant_id` (referencing the message recipient), `employer_name`, `employer_email`, and a message `body`. `read_status` defaults to `false` and should not be included in the request body.
 
-```
-  {
-    "applicant_id": 1,
-    "employer_name": "Turing",
-    "employer_email" : "info@turing.com",
-    "body" : "We're interested in interviewing you for our Back-End Instructor role. You'll rock our students' worlds!"
-  }
+```JSON
+{
+	"applicant_id": 1,
+	"employer_name": "Turing",
+	"employer_email" : "info@turing.com",
+	"body" : "We're interested in interviewing you for our Back-End Instructor role. You'll rock our students' worlds!"
+}
 ```
 ###### Response: Returns the new message attributes and its id
-```
+```JSON
 {
-    "success": true,
-    "data": {
-        "id": 3,
-        "applicant_id": 1,
-        "employer_name": "Blop",
-        "employer_email": "careers@blop.com",
-        "body": "We're desperate to hire you at Blop Corp. Will you interview with us this Friday?",
-        "read_status": false,
-        "created_at": "2020-11-02 02:10:15.909406-07:00",
-        "success": true
-    }
+	"success": true,
+	"data": {
+		"id": 3,
+		"applicant_id": 1,
+		"employer_name": "Blop",
+		"employer_email": "careers@blop.com",
+		"body": "We're desperate to hire you at Blop Corp. Will you interview with us this Friday?",
+		"read_status": false,
+		"created_at": "2020-11-02 02:10:15.909406-07:00",
+		"success": true
+	}
 }
 ```
 <!-- add documentation re: error handling here -->
@@ -433,53 +420,53 @@ Error message response:
 ### Skills
 #### GET `/api/v1/skills`
 ###### Response: Returns all skills. Used on the front-end to populate the list of skills an applicant may select when creating their profile.
-```
+```JSON
 {
-    "success": true,
-    "data": [
-        {
-            "id": 1,
-            "name": "rails"
-        },
-        {
-            "id": 2,
-            "name": "flask"
-        },
-        {
-            "id": 3,
-            "name": "ruby"
-        },
-        {
-            "id": 4,
-            "name": "java"
-        },
-        ...
-      ]
-    }
+	"success": true,
+	"data": [
+		{
+			"id": 1,
+			"attribute": "rails"
+		},
+		{
+			"id": 2,
+			"attribute": "flask"
+		},
+		{
+			"id": 3,
+			"attribute": "ruby"
+		},
+		{
+			"id": 4,
+			"attribute": "java"
+		},
+		...
+	]
+}
 ```
 
 ### Values
 #### GET `/api/v1/values`
 ###### Response: Returns all values. Used on the front-end to populate the list of values an applicant may select when creating their profile.
-```
+```JSON
 {
-    "success": true,
-    "data": [
-        {
-            "id": 1,
-            "name": "creativity"
-        },
-        {
-            "id": 2,
-            "name": "mentorship"
-        },
-        {
-            "id": 3,
-            "name": "engages with community"
-        },
-        ...
-      ]
-    }
+	"success": true,
+	"data": [
+		{
+			"id": 1,
+			"attribute": "creativity"
+		},
+		{
+			"id": 2,
+			"attribute": "mentorship"
+		},
+		{
+			"id": 3,
+			"attribute": "engages with community"
+		},
+		...
+  ]
+}
 ```
 
 ## Technologies
