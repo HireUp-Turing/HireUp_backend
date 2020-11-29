@@ -19,9 +19,9 @@ class PostApplicantTest(unittest.TestCase):
         self.app_context.pop()
 
     def test_create_new_applicant(self):
-        skill = Skill(name='skill')
+        skill = Skill(name='rails')
         db.session.add(skill)
-        value = Value(name='value')
+        value = Value(name='collaboration')
         db.session.add(value)
 
         new_data = {
@@ -43,12 +43,13 @@ class PostApplicantTest(unittest.TestCase):
         data = json.loads(response.data.decode('utf-8'))
 
         self.assertEqual(1, data['data']['id'])
-        self.assertEqual(['skill'], data['data']['skills'])
+        self.assertEqual('rails', data['data']['skills'][0]['attribute'])
+        self.assertEqual('collaboration', data['data']['values'][0]['attribute'])
 
     def test_sadpath_create_new_applicant(self):
-        skill = Skill(name='skill')
+        skill = Skill(name='rails')
         db.session.add(skill)
-        value = Value(name='value')
+        value = Value(name='collaboration')
         db.session.add(value)
 
         new_data = {
