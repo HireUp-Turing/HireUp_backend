@@ -142,6 +142,7 @@ This repo is the back-end service for HireUp and is consumed by our front-end ap
       "first_name": "Greyson",
       "last_name": "Johns",
       "bio": "I'm the best one you could possibly hire",
+      "email": "greyson@gmail.com",
       "username": "Chipmunk",
       "skills": [2, 3],
       "values": [2]
