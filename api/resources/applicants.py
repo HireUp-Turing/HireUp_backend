@@ -11,14 +11,20 @@ from api.database.models import Applicant, ApplicantSkill, ApplicantValue
 
 # HELPER METHODS
 def _applicant_payload(applicant):
+    skills = []
+    for skill in applicant.skills:
+        skills.append({'attribute': skill.name})
+
+    values = []
+    for value in applicant.values:
+        values.append({'attribute': value.name})
 
     return {
         'id': applicant.id,
         'username': applicant.username,
         'bio': applicant.bio,
-        # 'skills': [{'id': skill.id, 'name': skill.name} for skill in applicant.skills],
-        'skills': [skill.name for skill in applicant.skills],
-        'values': [value.name for value in applicant.values],
+        'skills': skills,
+        'values': values,
     }
 
 def _validate_field(data, field, proceed, errors, missing_okay=False):
