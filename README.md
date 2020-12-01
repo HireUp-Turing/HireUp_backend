@@ -54,6 +54,11 @@ This repo is the back-end service for HireUp and is consumed by our front-end ap
   $ python manage.py db upgrade # runs migrations on your test database
   ```
 - Run `$ export DATABASE_URL=postgresql://localhost:5432/hireup_dev` again to reset DATABASE_URL to the development database for any future work.
+- In order to avoid needing to restart the server manually after each change to your code, run the following commands, which enable all development features, including [debug mode](https://flask.palletsprojects.com/en/1.1.x/quickstart/#debug-mode):
+	```
+	$ export FLASK_ENV=development
+	$ flask run
+	```
 - `$ python run.py` to run server on `localhost:5000` (_If you get errors concerning the `FLASK_APP` environment not being set, try `$ export FLASK_APP=manage.py`_)
 
 ## CLI commands
