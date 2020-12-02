@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/HireUp-Turing/HireUp_backend.svg?branch=main)](https://travis-ci.org/HireUp-Turing/HireUp_backend)
 
-![HireUp gif](https://user-images.githubusercontent.com/62635544/98192087-9a45ce00-1ed7-11eb-91de-940074d1a8d7.gif)
+![HireUp gif](https://github.com/HireUp-Turing/HireUp_frontend/blob/master/public/images/new-applicant.gif?raw=true)
 
 ### Jump To
 - [About](#about)
