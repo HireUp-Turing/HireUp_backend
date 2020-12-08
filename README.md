@@ -170,12 +170,13 @@ This repo is the back-end service for HireUp and is consumed by our front-end ap
 ###### Request: Email, skills, and values are required fields
   ```JSON
   {
-		"first_name": "Greyson",
-		"last_name": "Johns",
-		"bio": "I'm the best one you could possibly hire",
-		"username": "Chipmunk",
-		"skills": [2, 3],
-		"values": [2]
+      "first_name": "Greyson",
+      "last_name": "Johns",
+      "bio": "I'm the best one you could possibly hire",
+      "email": "greyson@gmail.com",
+      "username": "Chipmunk",
+      "skills": [2, 3],
+      "values": [2]
   }
   ```
 
